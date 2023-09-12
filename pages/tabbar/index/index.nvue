@@ -1,0 +1,40 @@
+<template>
+
+	<view>
+		<!-- 导航栏 -->
+		<my-nav-bar title="仿微信" :fixed="flag"></my-nav-bar>
+		<!-- 用户列表 -->
+		<view class="flex align-center;" v-for="(item,index) in user">
+			<!-- 头像 -->
+			<view class="flex align-center justify-center" style="width: 145rpx;height: 135rpx;">
+				<img src="/static/images/userpic.png" mode="widthFix" style="width: 95rpx;height: 95rpx;">
+			</view>
+			<!-- 信息栏 -->
+			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
+				<view class="flex justify-between align-center mb-1">
+					<text class="font-md">昵称{{item}}</text>
+					<text class="font-sm text-light-muted">12:00</text>
+				</view>
+				<text class="font text-ellipsis text-light-muted">聊天内容</text>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import MyNavBar from '@/compoents/my-ui/my-nav-bar.vue'
+	export default {
+		components: {
+			MyNavBar
+		},
+		data() {
+			return {
+				flag: true,
+				user: [1, 2, 3, 4, 5, 6]
+			}
+		},
+	}
+</script>
+
+<style>
+</style>
