@@ -6,7 +6,9 @@
     "pages/tabbar/emil/emil",
     "compoents/my-ui/my-icon-button",
     "compoents/my-ui/my-nav-bar",
-    "compoents/my-ui/my-avatar"
+    "compoents/my-ui/my-avatar",
+    "compoents/my-ui/my-badge",
+    "compoents/my-ui/my-chat-list"
   ],
   "subPackages": [],
   "window": {

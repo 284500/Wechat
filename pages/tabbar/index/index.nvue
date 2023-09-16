@@ -4,31 +4,20 @@
 		<!-- 导航栏 -->
 		<my-nav-bar title="仿微信" :fixed="flag"></my-nav-bar>
 		<!-- 用户列表 -->
-		<view class="flex align-center;" v-for="(item,index) in list">
-			<!-- 头像 -->
-			<view class="flex align-center justify-center" style="width: 145rpx;height: 135rpx;">
-				<my-avatar :src="item.avater"></my-avatar>
-			</view>
-			<!-- 信息栏 -->
-			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
-				<view class="flex justify-between align-center mb-1">
-					<text class="font-md">{{item.nickname}}</text>
-					<text class="font-sm text-light-muted">{{item.update_time | formatTime}}</text>
-				</view>
-				<text class="font text-ellipsis text-light-muted">{{item.data}}</text>
-			</view>
-		</view>
+		<block v-for="(item,index) in list" :key="index">
+			<my-chat-list :item="item" :index="index"></my-chat-list>
+		</block>
+
 	</view>
 </template>
 
 <script>
-	import MyAvatar from '@/compoents/my-ui/my-avatar.vue'
+	import MyChatList from '@/compoents/my-ui/my-chat-list.vue'
 	import MyNavBar from '@/compoents/my-ui/my-nav-bar.vue'
-	import $Time from '@/common/time.js'
 	export default {
 		components: {
 			MyNavBar,
-			MyAvatar
+			MyChatList
 		},
 		data() {
 			return {

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "my-avatar": "/compoents/my-ui/my-avatar",
+    "my-badge": "/compoents/my-ui/my-badge"
+  }
+}
