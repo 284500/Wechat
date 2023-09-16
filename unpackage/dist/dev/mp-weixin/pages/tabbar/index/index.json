@@ -2,6 +2,7 @@
   "navigationBarTitleText": "uni-app",
   "usingComponents": {
     "my-nav-bar": "/compoents/my-ui/my-nav-bar",
-    "my-chat-list": "/compoents/my-ui/my-chat-list"
+    "my-chat-list": "/compoents/my-ui/my-chat-list",
+    "my-pop-up": "/compoents/my-ui/my-pop-up"
   }
 }

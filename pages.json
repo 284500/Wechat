@@ -74,6 +74,15 @@
             }
             
         }
+        ,{
+            "path" : "compoents/my-ui/my-pop-up",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

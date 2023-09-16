@@ -1,0 +1,1 @@
+<view hidden="{{!(status)}}" style="z-index:9999;overflow:hidden;"><view data-event-opts="{{[['tap',[['hide',['$event']]]]]}}" class="position-fixed top-0 right-0 left-0 bottom-0" style="background-color:rgba(0,0,0,0.5);" bindtap="__e"></view><view class="position-fixed bg-white" style="{{(popStyle)}}"><slot></slot></view></view>

@@ -1,10 +1,11 @@
 <template>
-	<view class="flex align-center;">
+	<view class="flex align-center;" hover-class="bg-hover-light" @click="onClick" @longpress="onLong">
 		<!-- 头像 -->
 		<view class="flex align-center justify-center position-relative" style="width: 145rpx;height: 135rpx;">
 			<my-avatar :src="item.avater"></my-avatar>
 			<!-- 消息角标 -->
-			<my-badge badge-class="position-absolute" badge-style="right:15rpx;top:14rpx">{{index+1}}</my-badge>
+			<my-badge v-if="item.num>0" badge-class="position-absolute"
+				badge-style="right:15rpx;top:14rpx">{{item.num ||index+1}}</my-badge>
 		</view>
 		<!-- 信息栏 -->
 		<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
@@ -20,26 +21,32 @@
 <script>
 	import MyAvatar from '@/compoents/my-ui/my-avatar.vue'
 	import MyBadge from '@/compoents/my-ui/my-badge.vue'
-	import $Time from '@/common/time.js'
+	import mixin from '@/common/mixin/base.js'
 	export default {
 		components: {
 			MyAvatar,
 			MyBadge
 		},
+		mixins: [mixin],
 		data() {
 			return {
 
+			}
+		},
+		methods: {
+			onClick() {
+				this.$emit('click');
+				console.log("ada")
+			},
+			onLong(e) {
+				console.log(e)
 			}
 		},
 		props: {
 			item: Object,
 			index: Number,
 		},
-		filters: {
-			formatTime(value) {
-				return $Time.gettime(value)
-			}
-		}
+
 	}
 </script>
 

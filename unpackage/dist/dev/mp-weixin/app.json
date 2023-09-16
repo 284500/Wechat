@@ -8,7 +8,8 @@
     "compoents/my-ui/my-nav-bar",
     "compoents/my-ui/my-avatar",
     "compoents/my-ui/my-badge",
-    "compoents/my-ui/my-chat-list"
+    "compoents/my-ui/my-chat-list",
+    "compoents/my-ui/my-pop-up"
   ],
   "subPackages": [],
   "window": {

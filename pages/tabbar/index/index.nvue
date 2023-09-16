@@ -2,22 +2,31 @@
 
 	<view>
 		<!-- 导航栏 -->
-		<my-nav-bar title="仿微信" :fixed="flag"></my-nav-bar>
+		<my-nav-bar title="仿微信" noreadnum="10" :fixed="flag" @search="search"></my-nav-bar>
 		<!-- 用户列表 -->
 		<block v-for="(item,index) in list" :key="index">
 			<my-chat-list :item="item" :index="index"></my-chat-list>
 		</block>
-
+		<my-pop-up ref="mypopup" pop-style="left: 20rpx;bottom: 20rpx;right: 20rpx;">
+			<view style="height: 300rpx;"></view>
+		</my-pop-up>
 	</view>
 </template>
 
 <script>
 	import MyChatList from '@/compoents/my-ui/my-chat-list.vue'
 	import MyNavBar from '@/compoents/my-ui/my-nav-bar.vue'
+	import MyPopUp from '@/compoents/my-ui/my-pop-up.vue'
 	export default {
 		components: {
 			MyNavBar,
-			MyChatList
+			MyChatList,
+			MyPopUp,
+		},
+		methods: {
+			search() {
+				this.$refs.mypopup.show();
+			}
 		},
 		data() {
 			return {
@@ -26,6 +35,8 @@
 						nickname: "昵称1",
 						update_time: 1692845763,
 						data: "哈哈哈哈",
+						// 聊天数量
+						num: 1,
 					},
 					{
 						avater: "/static/images/userpic.png",
@@ -47,12 +58,6 @@
 					}
 				],
 				flag: true,
-				user: [1, 2, 3, 4, 5, 6]
-			}
-		},
-		filters: {
-			formatTime(value) {
-				return $Time.gettime(value)
 			}
 		}
 	}

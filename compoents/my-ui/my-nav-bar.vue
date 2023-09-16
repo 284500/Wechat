@@ -8,7 +8,7 @@
 				<!-- 左边 -->
 				<view class="">
 					<solt>
-						<text v-if="title" class="font-md ml-3">{{title}}
+						<text v-if="title" class="font-md ml-3">{{getTitle}}
 						</text>
 					</solt>
 					<!-- <text class="iconfont">&#xe719;</text> -->
@@ -16,7 +16,7 @@
 				<!-- 右边 -->
 				<view class="flex align-center">
 					<my-icon-button :icon="'\ue693'" @click="a"></my-icon-button>
-					<my-icon-button :icon="'\ue628'"></my-icon-button>
+					<my-icon-button :icon="'\ue628'" @click="$emit('search')"></my-icon-button>
 				</view>
 			</view>
 		</view>
@@ -40,6 +40,10 @@
 			fixed: {
 				type: Boolean,
 				default: true
+			},
+			noreadnum: {
+				type: Number,
+				default: 0
 			}
 		},
 		data() {
@@ -55,8 +59,12 @@
 
 		},
 		computed: {
+			getTitle() {
+				let noreadnum = this.onreadnum > 0 ? this.noreadnum : '';
+				return `${this.title}(${this.noreadnum})`;
+			},
 			fixedStyle() {
-				return `height:${this.navBarHeight}px`
+				return `height:${this.navBarHeight}px`;
 			}
 		},
 		mounted() {

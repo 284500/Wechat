@@ -480,7 +480,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _myAvatar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-avatar.vue */ 79));
 var _myBadge = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-badge.vue */ 85));
-var _time = _interopRequireDefault(__webpack_require__(/*! @/common/time.js */ 77));
+var _base = _interopRequireDefault(__webpack_require__(/*! @/common/mixin/base.js */ 99));
+//
 //
 //
 //
@@ -505,17 +506,22 @@ var _default = {
     MyAvatar: _myAvatar.default,
     MyBadge: _myBadge.default
   },
+  mixins: [_base.default],
   data: function data() {
     return {};
+  },
+  methods: {
+    onClick: function onClick() {
+      this.$emit('click');
+      console.log("ada");
+    },
+    onLong: function onLong(e) {
+      console.log(e);
+    }
   },
   props: {
     item: Object,
     index: Number
-  },
-  filters: {
-    formatTime: function formatTime(value) {
-      return _time.default.gettime(value);
-    }
   }
 };
 exports.default = _default;

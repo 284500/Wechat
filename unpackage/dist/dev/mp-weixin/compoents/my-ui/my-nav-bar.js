@@ -160,6 +160,10 @@ var _default = {
     fixed: {
       type: Boolean,
       default: true
+    },
+    noreadnum: {
+      type: Number,
+      default: 0
     }
   },
   data: function data() {
@@ -171,6 +175,10 @@ var _default = {
   onLoad: function onLoad() {},
   methods: {},
   computed: {
+    getTitle: function getTitle() {
+      var noreadnum = this.onreadnum > 0 ? this.noreadnum : '';
+      return "".concat(this.title, "(").concat(this.noreadnum, ")");
+    },
     fixedStyle: function fixedStyle() {
       return "height:".concat(this.navBarHeight, "px");
     }
