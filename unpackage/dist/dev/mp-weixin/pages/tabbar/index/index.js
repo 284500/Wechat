@@ -98,6 +98,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.list, function (item, index) {
+    var $orig = _vm.__get_orig(item)
+    var f0 = _vm._f("formatTime")(item.update_time)
+    return {
+      $orig: $orig,
+      f0: f0,
+    }
+  })
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -137,6 +153,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _myNavBar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-nav-bar.vue */ 40));
+var _time = _interopRequireDefault(__webpack_require__(/*! @/common/time.js */ 77));
 //
 //
 //
@@ -199,9 +216,35 @@ var _default = {
   },
   data: function data() {
     return {
+      list: [{
+        avater: "/static/images/userpic.png",
+        nickname: "昵称1",
+        update_time: 1692845763,
+        data: "哈哈哈哈"
+      }, {
+        avater: "/static/images/userpic.png",
+        nickname: "昵称2",
+        update_time: new Date().getTime(),
+        data: "哈哈哈哈"
+      }, {
+        avater: "/static/images/userpic.png",
+        nickname: "昵称3",
+        update_time: new Date().getTime(),
+        data: "哈哈哈哈"
+      }, {
+        avater: "/static/images/userpic.png",
+        nickname: "昵称4",
+        update_time: new Date().getTime(),
+        data: "哈哈哈哈"
+      }],
       flag: true,
       user: [1, 2, 3, 4, 5, 6]
     };
+  },
+  filters: {
+    formatTime: function formatTime(value) {
+      return _time.default.gettime(value);
+    }
   }
 };
 exports.default = _default;

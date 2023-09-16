@@ -4,18 +4,18 @@
 		<!-- 导航栏 -->
 		<my-nav-bar title="仿微信" :fixed="flag"></my-nav-bar>
 		<!-- 用户列表 -->
-		<view class="flex align-center;" v-for="(item,index) in user">
+		<view class="flex align-center;" v-for="(item,index) in list">
 			<!-- 头像 -->
 			<view class="flex align-center justify-center" style="width: 145rpx;height: 135rpx;">
-				<img src="/static/images/userpic.png" mode="widthFix" style="width: 95rpx;height: 95rpx;">
+				<img :src="item.avater" mode="widthFix" style="width: 95rpx;height: 95rpx;">
 			</view>
 			<!-- 信息栏 -->
 			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
 				<view class="flex justify-between align-center mb-1">
-					<text class="font-md">昵称{{item}}</text>
-					<text class="font-sm text-light-muted">12:00</text>
+					<text class="font-md">{{item.nickname}}</text>
+					<text class="font-sm text-light-muted">{{item.update_time | formatTime}}</text>
 				</view>
-				<text class="font text-ellipsis text-light-muted">聊天内容</text>
+				<text class="font text-ellipsis text-light-muted">{{item.data}}</text>
 			</view>
 		</view>
 	</view>
@@ -23,16 +23,47 @@
 
 <script>
 	import MyNavBar from '@/compoents/my-ui/my-nav-bar.vue'
+	import $Time from '@/common/time.js'
 	export default {
 		components: {
 			MyNavBar
 		},
 		data() {
 			return {
+				list: [{
+						avater: "/static/images/userpic.png",
+						nickname: "昵称1",
+						update_time: 1692845763,
+						data: "哈哈哈哈",
+					},
+					{
+						avater: "/static/images/userpic.png",
+						nickname: "昵称2",
+						update_time: new Date().getTime(),
+						data: "哈哈哈哈",
+					},
+					{
+						avater: "/static/images/userpic.png",
+						nickname: "昵称3",
+						update_time: new Date().getTime(),
+						data: "哈哈哈哈",
+					},
+					{
+						avater: "/static/images/userpic.png",
+						nickname: "昵称4",
+						update_time: new Date().getTime(),
+						data: "哈哈哈哈",
+					}
+				],
 				flag: true,
 				user: [1, 2, 3, 4, 5, 6]
 			}
 		},
+		filters: {
+			formatTime(value) {
+				return $Time.gettime(value)
+			}
+		}
 	}
 </script>
 
