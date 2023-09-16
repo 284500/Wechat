@@ -5,10 +5,12 @@
 		<my-nav-bar title="仿微信" noreadnum="10" :fixed="flag" @search="search"></my-nav-bar>
 		<!-- 用户列表 -->
 		<block v-for="(item,index) in list" :key="index">
-			<my-chat-list :item="item" :index="index"></my-chat-list>
+			<my-chat-list :item="item" :index="index" @Long="long"></my-chat-list>
 		</block>
-		<my-pop-up ref="mypopup" pop-style="left: 20rpx;bottom: 20rpx;right: 20rpx;">
-			<view style="height: 300rpx;"></view>
+		<my-pop-up ref="mypopup">
+			<view style="height: 300rpx;">
+				dadadada
+			</view>
 		</my-pop-up>
 	</view>
 </template>
@@ -25,7 +27,13 @@
 		},
 		methods: {
 			search() {
-				this.$refs.mypopup.show();
+				this.$refs.mypopup.show(100, 100);
+			},
+			long({
+				x,
+				y
+			}) {
+				this.$refs.mypopup.show(x, y);
 			}
 		},
 		data() {

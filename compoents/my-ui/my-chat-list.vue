@@ -40,6 +40,18 @@
 			},
 			onLong(e) {
 				console.log(e)
+				let x = 0;
+				let y = 0;
+				if (Array.isArray(e.changedTouches) && e.changedTouches.length > 0) {
+					//微信小程序是client,h5是screen
+					x = e.changedTouches[0].clientX || e.changedTouches[0].screenX;
+					y = e.changedTouches[0].clientY || e.changedTouches[0].screenY;
+				}
+				this.$emit('Long', {
+					x,
+					y
+				});
+				console.log(x, y)
 			}
 		},
 		props: {
