@@ -5,7 +5,8 @@
     "pages/tabbar/my/my",
     "pages/tabbar/emil/emil",
     "compoents/my-ui/my-icon-button",
-    "compoents/my-ui/my-nav-bar"
+    "compoents/my-ui/my-nav-bar",
+    "compoents/my-ui/my-avatar"
   ],
   "subPackages": [],
   "window": {

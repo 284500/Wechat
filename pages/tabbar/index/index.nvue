@@ -7,7 +7,7 @@
 		<view class="flex align-center;" v-for="(item,index) in list">
 			<!-- 头像 -->
 			<view class="flex align-center justify-center" style="width: 145rpx;height: 135rpx;">
-				<img :src="item.avater" mode="widthFix" style="width: 95rpx;height: 95rpx;">
+				<my-avatar :src="item.avater"></my-avatar>
 			</view>
 			<!-- 信息栏 -->
 			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+	import MyAvatar from '@/compoents/my-ui/my-avatar.vue'
 	import MyNavBar from '@/compoents/my-ui/my-nav-bar.vue'
 	import $Time from '@/common/time.js'
 	export default {
 		components: {
-			MyNavBar
+			MyNavBar,
+			MyAvatar
 		},
 		data() {
 			return {

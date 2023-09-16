@@ -47,6 +47,15 @@
             }
             
         }
+        ,{
+            "path" : "compoents/my-ui/my-avatar",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

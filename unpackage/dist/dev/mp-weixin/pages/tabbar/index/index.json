@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "uni-app",
   "usingComponents": {
-    "my-nav-bar": "/compoents/my-ui/my-nav-bar"
+    "my-nav-bar": "/compoents/my-ui/my-nav-bar",
+    "my-avatar": "/compoents/my-ui/my-avatar"
   }
 }
