@@ -1,5 +1,6 @@
 <template>
-	<view class="flex align-center;" hover-class="bg-hover-light" @click="onClick" @longpress="onLong">
+	<view :class="item.isTop?'bg-dark':'bg-white'" class="flex align-center;" hover-class="bg-hover-light"
+		@click="onClick" @longpress="onLong">
 		<!-- 头像 -->
 		<view class="flex align-center justify-center position-relative" style="width: 145rpx;height: 135rpx;">
 			<my-avatar :src="item.avater"></my-avatar>
@@ -49,7 +50,8 @@
 				}
 				this.$emit('Long', {
 					x,
-					y
+					y,
+					index: this.index,
 				});
 				console.log(x, y)
 			}

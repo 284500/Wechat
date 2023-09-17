@@ -172,6 +172,7 @@ var _base = _interopRequireDefault(__webpack_require__(/*! @/common/mixin/base.j
 //
 //
 //
+//
 var _default = {
   components: {
     MyAvatar: _myAvatar.default,
@@ -197,7 +198,8 @@ var _default = {
       }
       this.$emit('Long', {
         x: x,
-        y: y
+        y: y,
+        index: this.index
       });
       console.log(x, y);
     }

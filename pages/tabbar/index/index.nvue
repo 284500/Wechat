@@ -3,9 +3,13 @@
 	<view>
 		<!-- 导航栏 -->
 		<my-nav-bar title="仿微信" noreadnum="10" :fixed="flag" :menus="menu"></my-nav-bar>
-		<!-- 用户列表 -->
+		<!-- 置顶用户列表 -->
 		<block v-for="(item,index) in list" :key="index">
-			<my-chat-list :item="item" :index="index" @Long="long"></my-chat-list>
+			<my-chat-list v-if="item.isTop" :item="item" :index="index" @Long="long"></my-chat-list>
+		</block>
+		<!-- 非置顶用户列表 -->
+		<block v-for="(item,index) in list" :key="index">
+			<my-chat-list v-if="!item.isTop" :item="item" :index="index" @Long="long"></my-chat-list>
 		</block>
 		<my-pop-up ref="mypopup" :body-height="getMenuHeight" :body-width="240">
 			<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
@@ -47,23 +51,39 @@
 			},
 			long({
 				x,
-				y
+				y,
+				index
 			}) {
+				// console.log(index)
+				this.chatIndex = index;
+				let item = this.list[this.chatIndex];
+				this.menu[0].name = item.isTop ? '取消置顶' : '设置置顶';
 				this.$refs.mypopup.show(x, y);
 			},
 			Click(e) {
 				switch (e) {
-					case '':
+					case 'setTop':
+						this.setTop();
 						break;
-					default:
+					case 'deleteChat':
+						this.deleteChat();
 						break;
 				}
+				this.$refs.mypopup.hide();
+			},
+			setTop() {
+				let item = this.list[this.chatIndex];
+				item.isTop = !item.isTop;
+			},
+			deleteChat() {
+				this.list.splice(this.chatIndex, 1)
 			}
 		},
 		data() {
 			return {
+				chatIndex: -1,
 				menu: [{
-						name: "取消置顶",
+						name: "设置置顶",
 						event: "setTop"
 					},
 					{
@@ -78,24 +98,31 @@
 						data: "哈哈哈哈",
 						// 聊天数量
 						num: 1,
+						isTop: false
 					},
 					{
 						avater: "/static/images/userpic.png",
 						nickname: "昵称2",
 						update_time: new Date().getTime(),
 						data: "哈哈哈哈",
+						num: 2,
+						isTop: false
 					},
 					{
 						avater: "/static/images/userpic.png",
 						nickname: "昵称3",
 						update_time: new Date().getTime(),
 						data: "哈哈哈哈",
+						num: 3,
+						isTop: false
 					},
 					{
 						avater: "/static/images/userpic.png",
 						nickname: "昵称4",
 						update_time: new Date().getTime(),
 						data: "哈哈哈哈",
+						num: 4,
+						isTop: false
 					}
 				],
 				flag: true,

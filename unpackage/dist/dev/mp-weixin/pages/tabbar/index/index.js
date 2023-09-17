@@ -194,6 +194,10 @@ var _myPopUp = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   components: {
     MyNavBar: _myNavBar.default,
@@ -217,22 +221,38 @@ var _default = {
     },
     long: function long(_ref) {
       var x = _ref.x,
-        y = _ref.y;
+        y = _ref.y,
+        index = _ref.index;
+      // console.log(index)
+      this.chatIndex = index;
+      var item = this.list[this.chatIndex];
+      this.menu[0].name = item.isTop ? '取消置顶' : '设置置顶';
       this.$refs.mypopup.show(x, y);
     },
     Click: function Click(e) {
       switch (e) {
-        case '':
+        case 'setTop':
+          this.setTop();
           break;
-        default:
+        case 'deleteChat':
+          this.deleteChat();
           break;
       }
+      this.$refs.mypopup.hide();
+    },
+    setTop: function setTop() {
+      var item = this.list[this.chatIndex];
+      item.isTop = !item.isTop;
+    },
+    deleteChat: function deleteChat() {
+      this.list.splice(this.chatIndex, 1);
     }
   },
   data: function data() {
     return {
+      chatIndex: -1,
       menu: [{
-        name: "取消置顶",
+        name: "设置置顶",
         event: "setTop"
       }, {
         name: "删除聊天",
@@ -244,22 +264,29 @@ var _default = {
         update_time: 1692845763,
         data: "哈哈哈哈",
         // 聊天数量
-        num: 1
+        num: 1,
+        isTop: false
       }, {
         avater: "/static/images/userpic.png",
         nickname: "昵称2",
         update_time: new Date().getTime(),
-        data: "哈哈哈哈"
+        data: "哈哈哈哈",
+        num: 2,
+        isTop: false
       }, {
         avater: "/static/images/userpic.png",
         nickname: "昵称3",
         update_time: new Date().getTime(),
-        data: "哈哈哈哈"
+        data: "哈哈哈哈",
+        num: 3,
+        isTop: false
       }, {
         avater: "/static/images/userpic.png",
         nickname: "昵称4",
         update_time: new Date().getTime(),
-        data: "哈哈哈哈"
+        data: "哈哈哈哈",
+        num: 4,
+        isTop: false
       }],
       flag: true
     };
@@ -415,6 +442,7 @@ var _base = _interopRequireDefault(__webpack_require__(/*! @/common/mixin/base.j
 //
 //
 //
+//
 var _default = {
   components: {
     MyAvatar: _myAvatar.default,
@@ -440,7 +468,8 @@ var _default = {
       }
       this.$emit('Long', {
         x: x,
-        y: y
+        y: y,
+        index: this.index
       });
       console.log(x, y);
     }
