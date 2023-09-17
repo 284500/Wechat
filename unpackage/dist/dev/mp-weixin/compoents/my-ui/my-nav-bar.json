@@ -2,6 +2,7 @@
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "my-icon-button": "/compoents/my-ui/my-icon-button"
+    "my-icon-button": "/compoents/my-ui/my-icon-button",
+    "my-pop-up": "/compoents/my-ui/my-pop-up"
   }
 }

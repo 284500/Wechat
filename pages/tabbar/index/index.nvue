@@ -2,14 +2,19 @@
 
 	<view>
 		<!-- 导航栏 -->
-		<my-nav-bar title="仿微信" noreadnum="10" :fixed="flag" @search="search"></my-nav-bar>
+		<my-nav-bar title="仿微信" noreadnum="10" :fixed="flag" :menus="menu"></my-nav-bar>
 		<!-- 用户列表 -->
 		<block v-for="(item,index) in list" :key="index">
 			<my-chat-list :item="item" :index="index" @Long="long"></my-chat-list>
 		</block>
-		<my-pop-up ref="mypopup">
-			<view style="height: 300rpx;">
-				dadadada
+		<my-pop-up ref="mypopup" :body-height="getMenuHeight" :body-width="240">
+			<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
+				<!-- 弹窗内容 -->
+				<view @click="Click(item.event)" v-for="item in menu" hover-class="bg-hover-secondary"
+					class="flex-1 align-center flex justify-center">
+					<text class="font-md">{{item.name}}</text>
+				</view>
+
 			</view>
 		</my-pop-up>
 	</view>
@@ -25,19 +30,47 @@
 			MyChatList,
 			MyPopUp,
 		},
+		computed: {
+			//动态获取菜单高度
+			getMenuHeight() {
+				let height = 100;
+				return this.menu.length * height;
+			},
+			//动态获取菜单样式
+			getMenuStyle() {
+				return `height:${this.getMenuHeight}rpx;`
+			},
+		},
 		methods: {
 			search() {
-				this.$refs.mypopup.show(100, 100);
+				// this.$refs.mypopup.show(100, 100);
 			},
 			long({
 				x,
 				y
 			}) {
 				this.$refs.mypopup.show(x, y);
+			},
+			Click(e) {
+				switch (e) {
+					case '':
+						break;
+					default:
+						break;
+				}
 			}
 		},
 		data() {
 			return {
+				menu: [{
+						name: "取消置顶",
+						event: "setTop"
+					},
+					{
+						name: "删除聊天",
+						event: "deleteChat"
+					},
+				],
 				list: [{
 						avater: "/static/images/userpic.png",
 						nickname: "昵称1",

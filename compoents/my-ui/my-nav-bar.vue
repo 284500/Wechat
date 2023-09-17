@@ -15,22 +15,36 @@
 				</view>
 				<!-- 右边 -->
 				<view class="flex align-center">
-					<my-icon-button :icon="'\ue693'" @click="a"></my-icon-button>
-					<my-icon-button :icon="'\ue628'" @click="$emit('search')"></my-icon-button>
+					<my-icon-button :icon="'\ue6e3'" @click="a"></my-icon-button>
+					<my-icon-button :icon="'\ue682'" @click="openExtend"></my-icon-button>
 				</view>
 			</view>
 		</view>
 		<!-- 占位 -->
 		<view v-if="fixed" :style="fixedStyle">
 		</view>
+		<!-- 拓展菜单 -->
+		<my-pop-up ref="extend" :body-height="105" :body-width="300" body-bg-color="bg-dark">
+			<view style="width: 280rpx;height: 400rpx;" class="flex flex-column">
+				<!-- 弹窗内容 -->
+				<!-- <view class="bg-dark"></view> -->
+				<view @click="Click(item.event)" v-for="item in menu" hover-class="bg-hover-secondary"
+					class="flex-1 align-center flex">
+					<text class="text-white iconfont font-md pl-3 pt-2 pr-2">{{item.icon}}</text>
+					<text class="font-md text-white">{{item.name}}</text>
+				</view>
+			</view>
+		</my-pop-up>
 	</view>
 </template>
 
 <script>
+	import MyPopUp from '@/compoents/my-ui/my-pop-up.vue'
 	import MyIconButton from '@/compoents/my-ui/my-icon-button.vue'
 	export default {
 		components: {
-			MyIconButton
+			MyIconButton,
+			MyPopUp
 		},
 		props: {
 			title: {
@@ -44,19 +58,47 @@
 			noreadnum: {
 				type: Number,
 				default: 0
+			},
+
+			menus: {
+				type: Object,
+				default: ''
 			}
 		},
 		data() {
 			return {
 				statusBarHeight: 0,
-				navBarHeight: 0
+				navBarHeight: 0,
+				menu: [{
+					name: "发起群聊",
+					event: "setChat",
+					icon: '\ue633'
+				}, {
+					name: "添加好友",
+					event: "set",
+					icon: '\ue65d'
+				}, {
+					name: "扫一扫",
+					event: "setTop",
+					icon: '\ue614'
+				}, {
+					name: "收付款",
+					event: "setTop",
+					icon: '\ue667'
+				}, {
+					name: "帮助与反馈",
+					event: "setTop",
+					icon: '\ue61c'
+				}]
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-
+			openExtend() {
+				this.$refs.extend.show(uni.upx2px(460), uni.upx2px(100));
+			}
 		},
 		computed: {
 			getTitle() {

@@ -189,24 +189,55 @@ var _myPopUp = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   components: {
     MyNavBar: _myNavBar.default,
     MyChatList: _myChatList.default,
     MyPopUp: _myPopUp.default
   },
+  computed: {
+    //动态获取菜单高度
+    getMenuHeight: function getMenuHeight() {
+      var height = 100;
+      return this.menu.length * height;
+    },
+    //动态获取菜单样式
+    getMenuStyle: function getMenuStyle() {
+      return "height:".concat(this.getMenuHeight, "rpx;");
+    }
+  },
   methods: {
     search: function search() {
-      this.$refs.mypopup.show(100, 100);
+      // this.$refs.mypopup.show(100, 100);
     },
     long: function long(_ref) {
       var x = _ref.x,
         y = _ref.y;
       this.$refs.mypopup.show(x, y);
+    },
+    Click: function Click(e) {
+      switch (e) {
+        case '':
+          break;
+        default:
+          break;
+      }
     }
   },
   data: function data() {
     return {
+      menu: [{
+        name: "取消置顶",
+        event: "setTop"
+      }, {
+        name: "删除聊天",
+        event: "deleteChat"
+      }],
       list: [{
         avater: "/static/images/userpic.png",
         nickname: "昵称1",
@@ -856,7 +887,20 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _myPopUp = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-pop-up.vue */ 69));
 var _myIconButton = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-icon-button.vue */ 64));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -887,7 +931,8 @@ var _myIconButton = _interopRequireDefault(__webpack_require__(/*! @/compoents/m
 //
 var _default = {
   components: {
-    MyIconButton: _myIconButton.default
+    MyIconButton: _myIconButton.default,
+    MyPopUp: _myPopUp.default
   },
   props: {
     title: {
@@ -901,16 +946,45 @@ var _default = {
     noreadnum: {
       type: Number,
       default: 0
+    },
+    menus: {
+      type: Object,
+      default: ''
     }
   },
   data: function data() {
     return {
       statusBarHeight: 0,
-      navBarHeight: 0
+      navBarHeight: 0,
+      menu: [{
+        name: "发起群聊",
+        event: "setChat",
+        icon: "\uE633"
+      }, {
+        name: "添加好友",
+        event: "set",
+        icon: "\uE65D"
+      }, {
+        name: "扫一扫",
+        event: "setTop",
+        icon: "\uE614"
+      }, {
+        name: "收付款",
+        event: "setTop",
+        icon: "\uE667"
+      }, {
+        name: "帮助与反馈",
+        event: "setTop",
+        icon: "\uE61C"
+      }]
     };
   },
   onLoad: function onLoad() {},
-  methods: {},
+  methods: {
+    openExtend: function openExtend() {
+      this.$refs.extend.show(uni.upx2px(460), uni.upx2px(100));
+    }
+  },
   computed: {
     getTitle: function getTitle() {
       var noreadnum = this.onreadnum > 0 ? this.noreadnum : '';
@@ -1172,7 +1246,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -1196,6 +1270,8 @@ var _default = {
     return {
       x: -1,
       y: -1,
+      maxX: 0,
+      maxY: 0,
       status: false
     };
   },
@@ -1203,9 +1279,11 @@ var _default = {
     show: function show() {
       var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      this.x = x;
-      this.y = y;
+      //设置最大值，防止弹窗溢出
+      this.x = x > this.maxX ? this.maxX : x;
+      this.y = y > this.maxY ? this.maxY : y;
       this.status = true;
+      console.log(this.maxX, this.maxY);
     },
     hide: function hide() {
       this.status = false;
@@ -1226,7 +1304,28 @@ var _default = {
     fixBottom: {
       type: Boolean,
       default: false
+    },
+    // 弹出层内容高度
+    bodyHeight: {
+      type: Number,
+      default: 0
+    },
+    // 弹出层内容高度
+    bodyWidth: {
+      type: Number,
+      default: 0
+    },
+    //背景颜色
+    bodyBgColor: {
+      type: String,
+      default: 'bg-white'
     }
+  },
+  mounted: function mounted() {
+    var res = uni.getSystemInfoSync();
+    this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight);
+    this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
+    console.log(res);
   },
   computed: {
     getMaskColor: function getMaskColor() {
@@ -1246,6 +1345,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 /* 74 */

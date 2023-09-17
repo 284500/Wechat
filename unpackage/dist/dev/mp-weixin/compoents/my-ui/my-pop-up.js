@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -157,6 +157,8 @@ var _default = {
     return {
       x: -1,
       y: -1,
+      maxX: 0,
+      maxY: 0,
       status: false
     };
   },
@@ -164,9 +166,11 @@ var _default = {
     show: function show() {
       var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      this.x = x;
-      this.y = y;
+      //设置最大值，防止弹窗溢出
+      this.x = x > this.maxX ? this.maxX : x;
+      this.y = y > this.maxY ? this.maxY : y;
       this.status = true;
+      console.log(this.maxX, this.maxY);
     },
     hide: function hide() {
       this.status = false;
@@ -187,7 +191,28 @@ var _default = {
     fixBottom: {
       type: Boolean,
       default: false
+    },
+    // 弹出层内容高度
+    bodyHeight: {
+      type: Number,
+      default: 0
+    },
+    // 弹出层内容高度
+    bodyWidth: {
+      type: Number,
+      default: 0
+    },
+    //背景颜色
+    bodyBgColor: {
+      type: String,
+      default: 'bg-white'
     }
+  },
+  mounted: function mounted() {
+    var res = uni.getSystemInfoSync();
+    this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight);
+    this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
+    console.log(res);
   },
   computed: {
     getMaskColor: function getMaskColor() {
@@ -207,6 +232,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ })
 

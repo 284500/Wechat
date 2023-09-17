@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "iconfont";
-	src: url('//at.alicdn.com/t/c/font_3698273_7wht2b7joym.ttf?t=1694335940901') format('truetype');
+	src: url('~@/static/font.ttf') format('truetype');
 }
 
 .iconfont {
