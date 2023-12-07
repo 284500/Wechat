@@ -22,7 +22,7 @@
 
 		},
 		{
-			"path": "pages/tabbar/emil/emil",
+			"path": "pages/tabbar/mail/mail",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -37,53 +37,43 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "compoents/my-ui/my-nav-bar",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "compoents/my-ui/my-avatar",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "compoents/my-ui/my-badge",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "compoents/my-ui/my-chat-list",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "compoents/my-ui/my-pop-up",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "compoents/my-ui/my-nav-bar",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "compoents/my-ui/my-avatar",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "compoents/my-ui/my-badge",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "compoents/my-ui/my-chat-list",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "compoents/my-ui/my-pop-up",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
@@ -101,7 +91,7 @@
 			"selectedIconPath": "static/tabbar/index-select.png",
 			"text": "首页"
 		}, {
-			"pagePath": "pages/tabbar/emil/emil",
+			"pagePath": "pages/tabbar/mail/mail",
 			"iconPath": "static/tabbar/mail.png",
 			"selectedIconPath": "static/tabbar/mail-select.png",
 			"text": "通讯录"

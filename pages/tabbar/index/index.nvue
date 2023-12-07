@@ -1,5 +1,4 @@
 <template>
-
 	<view>
 		<!-- 导航栏 -->
 		<my-nav-bar title="仿微信" noreadnum="10" :fixed="flag" :menus="menu"></my-nav-bar>
@@ -58,7 +57,7 @@
 				this.chatIndex = index;
 				let item = this.list[this.chatIndex];
 				this.menu[0].name = item.isTop ? '取消置顶' : '设置置顶';
-				this.$refs.mypopup.show(x, y);
+				this.$refs.mypopup.show(x - 50, y - 20);
 			},
 			Click(e) {
 				switch (e) {

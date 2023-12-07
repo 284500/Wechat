@@ -1,16 +1,17 @@
 <template>
 	<view>
+		<!-- 导航栏 -->
 		<view class="bg-light" :class="fixed?'fixed-top':'fixed'">
 			<!-- 状态栏 -->
 			<view class="" :style="'height:'+statusBarHeight+'px'"></view>
-			<!-- 导航栏 -->
+			<!-- 导航 -->
 			<view class="w-100 flex justify-between align-center border" style="height: 90rpx;">
 				<!-- 左边 -->
 				<view class="">
-					<solt>
+					<slot>
 						<text v-if="title" class="font-md ml-3">{{getTitle}}
 						</text>
-					</solt>
+					</slot>
 					<!-- <text class="iconfont">&#xe719;</text> -->
 				</view>
 				<!-- 右边 -->

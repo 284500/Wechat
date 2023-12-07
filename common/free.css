@@ -145,6 +145,7 @@
 /* flex 布局 */
 .flex {
 	/* #ifndef APP-PLUS-NVUE */
+
 	display: flex;
 	/* #endif */
 	flex-direction: row;

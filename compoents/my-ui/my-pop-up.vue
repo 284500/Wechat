@@ -1,13 +1,12 @@
 <template>
 	<!-- 弹出层 -->
-	<view class="" style="z-index: 9999; overflow: hidden;" v-show="status">
+	<view class="" style="z-index: 9999; overflow:hidden;" v-show="status">
 		<!-- 遮罩层 -->
 		<view v-if="mask" @click="hide" class="position-fixed top-0 right-0 left-0 bottom-0" :style="getMaskColor">
 		</view>
 		<view class="position-fixed" :class="[getBodyClass,bodyBgColor]" :style="getBodyStyle">
 			<slot></slot>
 		</view>
-	</view>
 	</view>
 </template>
 
@@ -32,6 +31,7 @@
 			},
 			hide() {
 				this.status = false;
+				// console.log("1")
 			}
 		},
 		props: {
