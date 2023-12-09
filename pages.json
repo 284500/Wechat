@@ -72,6 +72,12 @@
 				"enablePullDownRefresh": false
 			}
 
+		},
+		{
+			"path": "pages/chat/chat",
+			"style": {
+
+			}
 		}
 	],
 	"globalStyle": {

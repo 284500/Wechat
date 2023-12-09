@@ -1,0 +1,43 @@
+
+view,
+label,
+swiper-item,
+scroll-view {
+  display:flex;
+  flex-direction:column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+button {
+  margin: 0;
+}
+
+
+.chat-left-icon.data-v-6e1957d8 {
+	left: 95rpx;
+	top: 40rpx;
+}
+.chat-right-icon.data-v-6e1957d8 {
+	right: 95rpx;
+	top: 40rpx;
+}
+

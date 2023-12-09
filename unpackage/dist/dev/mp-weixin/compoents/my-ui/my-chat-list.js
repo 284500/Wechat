@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["compoents/my-ui/my-chat-list"],{
 
-/***/ 100:
+/***/ 102:
 /*!************************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-chat-list"} ***!
   \************************************************************************/
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -184,11 +184,14 @@ var _default = {
   },
   methods: {
     onClick: function onClick() {
-      this.$emit('click');
-      console.log("ada");
+      // this.$emit('click');
+      uni.navigateTo({
+        url: '/pages/chat/chat'
+      });
+      // console.log("ada")
     },
     onLong: function onLong(e) {
-      console.log(e);
+      // console.log(e)
       var x = 0;
       var y = 0;
       if (Array.isArray(e.changedTouches) && e.changedTouches.length > 0) {
@@ -210,6 +213,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
@@ -542,5 +546,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[100,"common/runtime","common/vendor"]]]);
+},[[102,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-chat-list.js.map

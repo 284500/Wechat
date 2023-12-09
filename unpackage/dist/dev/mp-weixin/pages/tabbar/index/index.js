@@ -411,7 +411,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -453,11 +453,14 @@ var _default = {
   },
   methods: {
     onClick: function onClick() {
-      this.$emit('click');
-      console.log("ada");
+      // this.$emit('click');
+      uni.navigateTo({
+        url: '/pages/chat/chat'
+      });
+      // console.log("ada")
     },
     onLong: function onLong(e) {
-      console.log(e);
+      // console.log(e)
       var x = 0;
       var y = 0;
       if (Array.isArray(e.changedTouches) && e.changedTouches.length > 0) {
@@ -479,6 +482,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 /* 45 */
@@ -958,6 +962,9 @@ var _myIconButton = _interopRequireDefault(__webpack_require__(/*! @/compoents/m
 //
 //
 //
+//
+//
+//
 var _default = {
   components: {
     MyIconButton: _myIconButton.default,
@@ -979,6 +986,10 @@ var _default = {
     menus: {
       type: Object,
       default: ''
+    },
+    isShowBack: {
+      type: Boolean,
+      default: false
     }
   },
   data: function data() {
@@ -1012,6 +1023,11 @@ var _default = {
   methods: {
     openExtend: function openExtend() {
       this.$refs.extend.show(uni.upx2px(460), uni.upx2px(100));
+    },
+    back: function back() {
+      uni.navigateBack({
+        delta: 1
+      });
     }
   },
   computed: {

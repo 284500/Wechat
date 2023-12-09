@@ -162,6 +162,9 @@ var _myIconButton = _interopRequireDefault(__webpack_require__(/*! @/compoents/m
 //
 //
 //
+//
+//
+//
 var _default = {
   components: {
     MyIconButton: _myIconButton.default,
@@ -183,6 +186,10 @@ var _default = {
     menus: {
       type: Object,
       default: ''
+    },
+    isShowBack: {
+      type: Boolean,
+      default: false
     }
   },
   data: function data() {
@@ -216,6 +223,11 @@ var _default = {
   methods: {
     openExtend: function openExtend() {
       this.$refs.extend.show(uni.upx2px(460), uni.upx2px(100));
+    },
+    back: function back() {
+      uni.navigateBack({
+        delta: 1
+      });
     }
   },
   computed: {
@@ -593,7 +605,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 97:
+/***/ 99:
 /*!**********************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-nav-bar"} ***!
   \**********************************************************************/
@@ -614,5 +626,5 @@ createPage(_myNavBar.default);
 
 /***/ })
 
-},[[97,"common/runtime","common/vendor"]]]);
+},[[99,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-nav-bar.js.map

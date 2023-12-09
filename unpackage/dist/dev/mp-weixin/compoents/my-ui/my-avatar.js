@@ -1,5 +1,26 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["compoents/my-ui/my-avatar"],{
 
+/***/ 100:
+/*!*********************************************************************!*\
+  !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-avatar"} ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx, createPage) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+__webpack_require__(/*! uni-pages */ 26);
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
+var _myAvatar = _interopRequireDefault(__webpack_require__(/*! ./compoents/my-ui/my-avatar.vue */ 45));
+// @ts-ignore
+wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
+createPage(_myAvatar.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createPage"]))
+
+/***/ }),
+
 /***/ 45:
 /*!**************************************************!*\
   !*** F:/uniapp/微信/compoents/my-ui/my-avatar.vue ***!
@@ -149,28 +170,7 @@ var _default = {
 };
 exports.default = _default;
 
-/***/ }),
-
-/***/ 98:
-/*!*********************************************************************!*\
-  !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-avatar"} ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(wx, createPage) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-__webpack_require__(/*! uni-pages */ 26);
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
-var _myAvatar = _interopRequireDefault(__webpack_require__(/*! ./compoents/my-ui/my-avatar.vue */ 45));
-// @ts-ignore
-wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
-createPage(_myAvatar.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createPage"]))
-
 /***/ })
 
-},[[98,"common/runtime","common/vendor"]]]);
+},[[100,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-avatar.js.map

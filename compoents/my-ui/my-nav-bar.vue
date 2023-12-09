@@ -5,9 +5,10 @@
 			<!-- 状态栏 -->
 			<view class="" :style="'height:'+statusBarHeight+'px'"></view>
 			<!-- 导航 -->
-			<view class="w-100 flex justify-between align-center border" style="height: 90rpx;">
+			<view class="w-100 flex justify-between align-center" style="height: 90rpx;">
 				<!-- 左边 -->
-				<view class="">
+				<view class="flex align-center">
+					<my-icon-button class="pt-2" v-if="isShowBack" @click="back" :icon="'\ue60d'"></my-icon-button>
 					<slot>
 						<text v-if="title" class="font-md ml-3">{{getTitle}}
 						</text>
@@ -16,8 +17,10 @@
 				</view>
 				<!-- 右边 -->
 				<view class="flex align-center">
-					<my-icon-button :icon="'\ue6e3'" @click="a"></my-icon-button>
-					<my-icon-button :icon="'\ue682'" @click="openExtend"></my-icon-button>
+					<slot name="right">
+						<my-icon-button :icon="'\ue6e3'" @click="a"></my-icon-button>
+						<my-icon-button :icon="'\ue682'" @click="openExtend"></my-icon-button>
+					</slot>
 				</view>
 			</view>
 		</view>
@@ -64,6 +67,10 @@
 			menus: {
 				type: Object,
 				default: ''
+			},
+			isShowBack: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -99,6 +106,11 @@
 		methods: {
 			openExtend() {
 				this.$refs.extend.show(uni.upx2px(460), uni.upx2px(100));
+			},
+			back() {
+				uni.navigateBack({
+					delta: 1,
+				})
 			}
 		},
 		computed: {

@@ -141,7 +141,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 96:
+/***/ 98:
 /*!**************************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-icon-button"} ***!
   \**************************************************************************/
@@ -162,5 +162,5 @@ createPage(_myIconButton.default);
 
 /***/ })
 
-},[[96,"common/runtime","common/vendor"]]]);
+},[[98,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-icon-button.js.map

@@ -139,13 +139,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
-//
-//
-//
-//
-//
+var MyDivider = function MyDivider() {
+  __webpack_require__.e(/*! require.ensure | compoents/my-ui/my-divider */ "compoents/my-ui/my-divider").then((function () {
+    return resolve(__webpack_require__(/*! @/compoents/my-ui/my-divider.vue */ 119));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
+var MyListItem = function MyListItem() {
+  __webpack_require__.e(/*! require.ensure | compoents/my-ui/my-list-item */ "compoents/my-ui/my-list-item").then((function () {
+    return resolve(__webpack_require__(/*! @/compoents/my-ui/my-list-item.vue */ 114));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
 var _default = {
+  components: {
+    MyDivider: MyDivider,
+    MyListItem: MyListItem
+  },
   data: function data() {
     return {};
   },

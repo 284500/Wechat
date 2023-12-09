@@ -9,7 +9,8 @@
     "compoents/my-ui/my-avatar",
     "compoents/my-ui/my-badge",
     "compoents/my-ui/my-chat-list",
-    "compoents/my-ui/my-pop-up"
+    "compoents/my-ui/my-pop-up",
+    "pages/chat/chat"
   ],
   "subPackages": [],
   "window": {

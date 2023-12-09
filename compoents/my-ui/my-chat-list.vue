@@ -1,5 +1,5 @@
 <template>
-	<view :class="item.isTop?'bg-dark':'bg-white'" class="flex align-center;" hover-class="bg-hover-light"
+	<view :class="item.isTop?'bg-light':'bg-white'" class="flex align-center; " hover-class="bg-hover-light"
 		@click="onClick" @longpress="onLong">
 		<!-- 头像 -->
 		<view class="flex align-center justify-center position-relative" style="width: 145rpx;height: 135rpx;">
@@ -36,11 +36,14 @@
 		},
 		methods: {
 			onClick() {
-				this.$emit('click');
-				console.log("ada")
+				// this.$emit('click');
+				uni.navigateTo({
+					url: '/pages/chat/chat'
+				})
+				// console.log("ada")
 			},
 			onLong(e) {
-				console.log(e)
+				// console.log(e)
 				let x = 0;
 				let y = 0;
 				if (Array.isArray(e.changedTouches) && e.changedTouches.length > 0) {
