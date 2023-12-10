@@ -16,24 +16,23 @@
 			return {
 				x: -1,
 				y: -1,
-				maxX: 0,
-				maxY: 0,
+				res: {},
+				// maxX: 0,
+				// maxY: 0,
 				status: false
 			}
 		},
 		methods: {
 			show(x = 0, y = 0) {
 				//设置最大值，防止弹窗溢出
-				this.x = x > this.maxX ? this.maxX : x;
-				this.y = y > this.maxY ? this.maxY : y;
 				this.status = true;
-				console.log(this.maxX, this.maxY)
-				// console.log(this.tabbarHeight)
-				console.log(uni.upx2px(this.bodyHeight))
+				this.$nextTick(() => {
+					this.x = x > this.maxX ? this.maxX : x;
+					this.y = y > this.maxY ? this.maxY : y;
+				})
 			},
 			hide() {
 				this.status = false;
-				// console.log("1")
 			}
 		},
 		props: {
@@ -74,8 +73,9 @@
 		},
 		mounted() {
 			const res = uni.getSystemInfoSync();
-			this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
-			this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
+			this.res = res;
+			// this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
+			// this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
 			// console.log(res);
 		},
 		computed: {
@@ -93,6 +93,12 @@
 				let top = this.y > -1 ? `top:${this.y}px;` : '';
 				// return 'left:20rpx;bottom:20rpx;right:20rpx;'
 				return `${left}${top}`;
+			},
+			maxX() {
+				return this.res.screenWidth - uni.upx2px(this.bodyWidth);
+			},
+			maxY() {
+				return this.res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
 			}
 		}
 	}

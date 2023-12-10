@@ -528,29 +528,28 @@ var _default = {
     return {
       x: -1,
       y: -1,
-      maxX: 0,
-      maxY: 0,
+      res: {},
+      // maxX: 0,
+      // maxY: 0,
       status: false
     };
   },
   methods: {
     show: function show() {
+      var _this = this;
       var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
       //设置最大值，防止弹窗溢出
-      this.x = x > this.maxX ? this.maxX : x;
-      this.y = y > this.maxY ? this.maxY : y;
       this.status = true;
-      console.log(this.maxX, this.maxY);
-      // console.log(this.tabbarHeight)
-      console.log(uni.upx2px(this.bodyHeight));
+      this.$nextTick(function () {
+        _this.x = x > _this.maxX ? _this.maxX : x;
+        _this.y = y > _this.maxY ? _this.maxY : y;
+      });
     },
     hide: function hide() {
       this.status = false;
-      // console.log("1")
     }
   },
-
   props: {
     //遮罩层颜色
     maskColor: {
@@ -589,8 +588,9 @@ var _default = {
   },
   mounted: function mounted() {
     var res = uni.getSystemInfoSync();
-    this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
-    this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
+    this.res = res;
+    // this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
+    // this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
     // console.log(res);
   },
 
@@ -608,6 +608,12 @@ var _default = {
       var top = this.y > -1 ? "top:".concat(this.y, "px;") : '';
       // return 'left:20rpx;bottom:20rpx;right:20rpx;'
       return "".concat(left).concat(top);
+    },
+    maxX: function maxX() {
+      return this.res.screenWidth - uni.upx2px(this.bodyWidth);
+    },
+    maxY: function maxY() {
+      return this.res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
     }
   }
 };
@@ -1006,7 +1012,7 @@ var _default = {
       statusBarHeight: 0,
       navBarHeight: 0,
       chatIndex: -1,
-      bianhao: 0,
+      bianhao: 1,
       menu: [{
         name: "复制",
         event: "copy"
@@ -1082,6 +1088,13 @@ var _default = {
         type: "text",
         data: "哈哈哈哈哈",
         create_time: new Date().getTime() - 1000 * 60 * 4
+      }, {
+        avatar: "/static/images/mail/friend.png",
+        user_id: 0,
+        nickname: "ada",
+        type: "text",
+        data: "哈哈哈哈哈",
+        create_time: new Date().getTime() - 1000 * 60 * 4
       }]
     };
   },
@@ -1094,15 +1107,15 @@ var _default = {
       this.chatIndex = index;
       this.bianhao = this.list[this.chatIndex].user_id;
       console.log(this.bianhao);
-      this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
-      this.$refs.mypopup.show(x, y);
+      // this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
+      this.$refs.mypopup.show(x - 50, y - 20);
     }
   },
   computed: {
     //动态获取菜单高度
     getMenuHeight: function getMenuHeight() {
       var height = 100;
-      return this.menu.length * height;
+      return this.getMenuList.length * height;
     },
     //动态获取菜单样式
     getMenuStyle: function getMenuStyle() {
