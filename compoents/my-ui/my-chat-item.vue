@@ -4,6 +4,10 @@
 		<view class=" flex align-center justify-center py-1">
 			<text class="font-sm text-light-muted">{{showTime}}</text>
 		</view>
+		<!-- 撤回消息 -->
+		<view v-if="item.isRemove" class=" flex align-center justify-center py-1 pb-3">
+			<text class="font-sm text-light-muted">{{isSelf?"你":"对方"}}撤回了一条消息</text>
+		</view>
 		<!-- 聊天气泡 -->
 		<!-- 左边好友栏 -->
 		<view v-if="!isSelf" class="flex pl-2 pt-2 mb-1" style="position: relative;">

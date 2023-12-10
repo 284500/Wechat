@@ -26,7 +26,7 @@
 				<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
 					<!-- 弹窗内容 -->
 					<view v-for="(item,index) in getMenuList" :key="index" hover-class="bg-hover-secondary"
-						class="flex-1 align-center flex justify-center">
+						class="flex-1 align-center flex justify-center" @click="click(item.event)">
 						<text class="font-md">{{item.name}}</text>
 					</view>
 				</view>
@@ -79,7 +79,7 @@
 					},
 					{
 						name: "撤回",
-						event: "send"
+						event: "removeChat"
 					},
 
 
@@ -90,6 +90,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 2400
 					}, {
 						avatar: "/static/images/mail/friend.png",
@@ -97,6 +98,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 1 * 60
 					}, {
 						avatar: "/static/images/mail/friend.png",
@@ -104,6 +106,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈哈",
+						isRemove: true,
 						create_time: new Date().getTime() - 2 * 60 * 1000
 					}, {
 						avatar: "/static/images/mail/friend.png",
@@ -111,6 +114,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 4
 					},
 					{
@@ -119,6 +123,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 4
 					},
 					{
@@ -127,6 +132,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 4
 					},
 					{
@@ -135,6 +141,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 4
 					},
 					{
@@ -143,6 +150,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 4
 					},
 					{
@@ -151,6 +159,7 @@
 						nickname: "ada",
 						type: "text",
 						data: "哈哈哈哈哈",
+						isRemove: false,
 						create_time: new Date().getTime() - 1000 * 60 * 4
 					},
 				],
@@ -169,6 +178,19 @@
 				// this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
 				this.$refs.mypopup.show(x - 50, y - 20);
 			},
+			click(e) {
+				switch (e) {
+					case 'removeChat':
+						//拿到当前被操作的消息
+						this.list[this.chatIndex].isRemove = true
+						break;
+					case 'deleteChat':
+						this.deleteChat();
+						break;
+				}
+				//关闭菜单
+				this.$refs.mypopup.hide();
+			}
 		},
 		computed: {
 			//动态获取菜单高度

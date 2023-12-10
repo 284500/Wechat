@@ -1030,7 +1030,7 @@ var _default = {
         event: "send"
       }, {
         name: "撤回",
-        event: "send"
+        event: "removeChat"
       }],
       list: [{
         avatar: "/static/images/mail/friend.png",
@@ -1038,6 +1038,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 2400
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1045,6 +1046,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 1 * 60
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1052,6 +1054,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈哈",
+        isRemove: true,
         create_time: new Date().getTime() - 2 * 60 * 1000
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1059,6 +1062,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 4
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1066,6 +1070,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 4
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1073,6 +1078,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 4
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1080,6 +1086,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 4
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1087,6 +1094,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 4
       }, {
         avatar: "/static/images/mail/friend.png",
@@ -1094,6 +1102,7 @@ var _default = {
         nickname: "ada",
         type: "text",
         data: "哈哈哈哈哈",
+        isRemove: false,
         create_time: new Date().getTime() - 1000 * 60 * 4
       }]
     };
@@ -1109,6 +1118,19 @@ var _default = {
       console.log(this.bianhao);
       // this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
       this.$refs.mypopup.show(x - 50, y - 20);
+    },
+    click: function click(e) {
+      switch (e) {
+        case 'removeChat':
+          //拿到当前被操作的消息
+          this.list[this.chatIndex].isRemove = true;
+          break;
+        case 'deleteChat':
+          this.deleteChat();
+          break;
+      }
+      //关闭菜单
+      this.$refs.mypopup.hide();
     }
   },
   computed: {
@@ -1267,6 +1289,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _time = _interopRequireDefault(__webpack_require__(/*! @/common/time.js */ 58));
 var _myAvatar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-avatar.vue */ 45));
+//
+//
+//
+//
 //
 //
 //

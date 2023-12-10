@@ -152,6 +152,10 @@ var _myAvatar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   components: {
     MyAvatar: _myAvatar.default
