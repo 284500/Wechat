@@ -78,6 +78,13 @@
 			"style": {
 
 			}
+		},
+		{
+			"path": "compoents/my-ui/my-chat-item",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {

@@ -1,0 +1,13 @@
+
+.chat-left-icon.data-v-7fd2c254 {
+	left: 95rpx;
+	top: 40rpx;
+}
+.chat-right-icon.data-v-7fd2c254 {
+	right: 95rpx;
+	top: 40rpx;
+}
+.pd.data-v-7fd2c254 {
+	padding: 15rpx;
+}
+

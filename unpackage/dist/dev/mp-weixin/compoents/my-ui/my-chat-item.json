@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "component": true
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "my-avatar": "/compoents/my-ui/my-avatar"
+  }
 }
