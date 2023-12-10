@@ -65,8 +65,8 @@
 			},
 
 			menus: {
-				type: Object,
-				default: ''
+				type: Array,
+				default: []
 			},
 			isShowBack: {
 				type: Boolean,

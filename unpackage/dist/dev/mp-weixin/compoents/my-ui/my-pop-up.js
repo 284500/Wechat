@@ -170,6 +170,8 @@ var _default = {
       this.y = y > this.maxY ? this.maxY : y;
       this.status = true;
       console.log(this.maxX, this.maxY);
+      // console.log(this.tabbarHeight)
+      console.log(uni.upx2px(this.bodyHeight));
     },
     hide: function hide() {
       this.status = false;
@@ -207,14 +209,19 @@ var _default = {
     bodyBgColor: {
       type: String,
       default: 'bg-white'
+    },
+    tabbarHeight: {
+      type: Number,
+      default: 0
     }
   },
   mounted: function mounted() {
     var res = uni.getSystemInfoSync();
-    this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight);
+    this.maxY = res.screenHeight - uni.upx2px(this.bodyHeight) - uni.upx2px(this.tabbarHeight);
     this.maxX = res.screenWidth - uni.upx2px(this.bodyWidth);
-    console.log(res);
+    // console.log(res);
   },
+
   computed: {
     getMaskColor: function getMaskColor() {
       var color = this.maskColor ? 0.5 : 0;
