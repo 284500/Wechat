@@ -40,12 +40,13 @@
 
 				</view>
 			</template>
-			<!-- <my-chat-item :items="list[0]"></my-chat-item> -->
+			<my-chat-item></my-chat-item>
 		</scroll-view>
 	</view>
 </template>
 
 <script>
+	import test from '@/compoents/my-ui/test.vue'
 	import MyChatItem from '@/compoents/my-ui/my-chat-item.vue'
 	import MyAvatar from '@/compoents/my-ui/my-avatar.vue'
 	import MyIconButton from '@/compoents/my-ui/my-icon-button.vue'
@@ -55,7 +56,8 @@
 			MyNavBar,
 			MyIconButton,
 			MyAvatar,
-			MyChatItem
+			MyChatItem,
+			test
 		},
 		data() {
 			return {

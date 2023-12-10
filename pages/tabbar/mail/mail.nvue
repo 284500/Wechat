@@ -6,7 +6,7 @@
 			</text>
 		</my-nav-bar>
 		<!-- 通讯录列表 -->
-		<my-list-item v-for="item in mailList" @click="click(item.event)" :title="item.title"
+		<my-list-item v-for="item in mailList" :key="item" @click="click(item.event)" :title="item.title"
 			:img-url="item.imgUrl"></my-list-item>
 		<view v-for="(item,index) in list" :key="index" v-if="item.data.length>0">
 			<view class="py-2 px-3 border-bottom bg-light">
@@ -27,7 +27,7 @@
 		components: {
 			MyNavBar,
 			MyPopUp,
-			MyListItem
+			MyListItem,
 		},
 		data() {
 			return {

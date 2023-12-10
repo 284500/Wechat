@@ -1,8 +1,1 @@
-{
-  "usingComponents": {
-    "my-nav-bar": "/compoents/my-ui/my-nav-bar",
-    "my-icon-button": "/compoents/my-ui/my-icon-button",
-    "my-avatar": "/compoents/my-ui/my-avatar",
-    "my-chat-item": "/compoents/my-ui/my-chat-item"
-  }
-}
+{}
