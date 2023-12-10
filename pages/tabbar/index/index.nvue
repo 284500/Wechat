@@ -13,8 +13,8 @@
 		<my-pop-up ref="mypopup" :body-height="getMenuHeight" :body-width="240">
 			<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
 				<!-- 弹窗内容 -->
-				<view @click="Click(item.event)" v-for="item in menu" hover-class="bg-hover-secondary"
-					class="flex-1 align-center flex justify-center">
+				<view @click="Click(item.event)" v-for="(item,index) in menu" :key="index"
+					hover-class="bg-hover-secondary" class="flex-1 align-center flex justify-center">
 					<text class="font-md">{{item.name}}</text>
 				</view>
 

@@ -25,7 +25,7 @@
 			<my-pop-up ref="mypopup" :tabbar-height="260" :body-height="getMenuHeight" :body-width="240">
 				<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
 					<!-- 弹窗内容 -->
-					<view v-for="item in menu" hover-class="bg-hover-secondary"
+					<view v-for="(item,index) in getMenuList" :key="index" hover-class="bg-hover-secondary"
 						class="flex-1 align-center flex justify-center">
 						<text class="font-md">{{item.name}}</text>
 					</view>
@@ -54,6 +54,7 @@
 				statusBarHeight: 0,
 				navBarHeight: 0,
 				chatIndex: -1,
+				bianhao: 0,
 				menu: [{
 						name: "复制",
 						event: "copy"
@@ -155,7 +156,9 @@
 				index
 			}) {
 				this.chatIndex = index;
-				// this.menu[1].name = this.isSelf ? '取消置顶' : '设置置顶';
+				this.bianhao = this.list[this.chatIndex].user_id;
+				console.log(this.bianhao)
+				this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
 				this.$refs.mypopup.show(x, y);
 			},
 		},
@@ -172,11 +175,20 @@
 			fixedStyle() {
 				return `top:${this.navBarHeight}px`
 			},
-			// isSelf() {
-			// 	//id为1是本人
-			// 	const id = 1;
-			// 	return 	this.list[this.chatIndex].user_id === id
-			// }
+			isDoSelf() {
+				//id为1是本人
+				const id = 1;
+				return this.bianhao === id
+			},
+			getMenuList() {
+				return this.menu.filter(v => {
+					if (v.name === '撤回' && !this.isDoSelf) {
+						return false
+					} else {
+						return true
+					}
+				})
+			}
 		},
 		mounted() {
 			// #ifdef APP-PLUS-NVUE

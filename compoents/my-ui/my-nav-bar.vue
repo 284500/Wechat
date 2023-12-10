@@ -32,8 +32,8 @@
 			<view style="width: 280rpx;height: 400rpx;" class="flex flex-column">
 				<!-- 弹窗内容 -->
 				<!-- <view class="bg-dark"></view> -->
-				<view @click="Click(item.event)" v-for="item in menu" hover-class="bg-hover-secondary"
-					class="flex-1 align-center flex">
+				<view @click="Click(item.event)" v-for="(item,index) in menu" :key="index"
+					hover-class="bg-hover-secondary" class="flex-1 align-center flex">
 					<text class="text-white iconfont font-md pl-3 pt-2 pr-2">{{item.icon}}</text>
 					<text class="font-md text-white">{{item.name}}</text>
 				</view>

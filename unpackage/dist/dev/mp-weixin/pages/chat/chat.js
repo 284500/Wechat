@@ -1006,6 +1006,7 @@ var _default = {
       statusBarHeight: 0,
       navBarHeight: 0,
       chatIndex: -1,
+      bianhao: 0,
       menu: [{
         name: "复制",
         event: "copy"
@@ -1091,7 +1092,9 @@ var _default = {
         y = _ref.y,
         index = _ref.index;
       this.chatIndex = index;
-      // this.menu[1].name = this.isSelf ? '取消置顶' : '设置置顶';
+      this.bianhao = this.list[this.chatIndex].user_id;
+      console.log(this.bianhao);
+      this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
       this.$refs.mypopup.show(x, y);
     }
   },
@@ -1107,11 +1110,22 @@ var _default = {
     },
     fixedStyle: function fixedStyle() {
       return "top:".concat(this.navBarHeight, "px");
-    } // isSelf() {
-    // 	//id为1是本人
-    // 	const id = 1;
-    // 	return 	this.list[this.chatIndex].user_id === id
-    // }
+    },
+    isDoSelf: function isDoSelf() {
+      //id为1是本人
+      var id = 1;
+      return this.bianhao === id;
+    },
+    getMenuList: function getMenuList() {
+      var _this = this;
+      return this.menu.filter(function (v) {
+        if (v.name === '撤回' && !_this.isDoSelf) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+    }
   },
   mounted: function mounted() {
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
