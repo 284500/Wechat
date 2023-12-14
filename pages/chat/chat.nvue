@@ -5,23 +5,24 @@
 			<my-icon-button slot="right" :icon="'\ue6fd'"></my-icon-button>
 		</my-nav-bar>
 		<!-- 底部导航 -->
-		<view class="position-fixed left-0 right-0 bottom-0 border-top flex align-center"
-			style="background-color: #f7f7f6;height: 105rpx;">
+		<view class="position-fixed left-0 right-0 border-top flex align-center"
+			style="background-color: #f7f7f6;height: 105rpx;" :style="getKeyBoardHeight">
 			<my-icon-button :icon="'\ue606'"></my-icon-button>
 			<view class="flex-1">
-				<textarea fixed class="font-md p-2 bg-white rounded" style="height: 80rpx;width: 100%;"></textarea>
+				<textarea @focus="test" adjust-position="false" fixed class="font-md p-2 bg-white rounded"
+					style="height: 80rpx;width: 100%;"></textarea>
 			</view>
 			<my-icon-button :icon="'\ue605'"></my-icon-button>
 			<my-icon-button :icon="'\ue603'"></my-icon-button>
 		</view>
 		<!-- 聊天内容区域 -->
-		<scroll-view scroll-y="true" class=" position-fixed left-0 right-0 bg-light" style="bottom: 105rpx;"
-			:style="fixedStyle">
+		<scroll-view :show-scrollbar="false" scroll-y="true" class=" position-fixed left-0 right-0 bg-white"
+			style="bottom: 105rpx;" :style="chatBody" :scroll-into-view="scrollIntoView">
 			<!-- 聊天列表 -->
-			<block v-for="(item,index) in list" :key="index">
-				<my-chat-item :index="index" :item="item" :pre-time="index>0?list[index-1].create_time:0"
+			<view v-for="(item,index) in list" :key="index" :id="'chatItem_'+index">
+				<my-chat-item ref="chatItem" :index="index" :item="item" :pre-time="index>0?list[index-1].create_time:0"
 					@Long="long"></my-chat-item>
-			</block>
+			</view>
 			<my-pop-up ref="mypopup" :tabbar-height="260" :body-height="getMenuHeight" :body-width="240">
 				<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
 					<!-- 弹窗内容 -->
@@ -36,6 +37,9 @@
 </template>
 
 <script>
+	// #ifdef APP-PLUS-NVUE
+	const dom = weex.requireModle('dom')
+	// #endif
 	import MyPopUp from '@/compoents/my-ui/my-pop-up.vue'
 	import MyChatItem from '@/compoents/my-ui/my-chat-item.vue'
 	import MyAvatar from '@/compoents/my-ui/my-avatar.vue'
@@ -51,8 +55,10 @@
 		},
 		data() {
 			return {
+				scrollIntoView: 'chatItem_0',
 				statusBarHeight: 0,
 				navBarHeight: 0,
+				KeyboardHeight: 0,
 				chatIndex: -1,
 				bianhao: 1,
 				menu: [{
@@ -166,7 +172,35 @@
 			}
 		},
 		methods: {
-			//长
+
+			pageToBottom() {
+				this.$nextTick(() => {
+					// #ifdef APP-PLUS-NVUE
+					let chatItem = this.$refs.chatItem
+					let lastIndexs = chatItem.length > 0 ? chatItem.length - 1 : 0
+					let last = chatItem[lastIndexs]
+					if (last) {
+						dom.scrollToElement(last, {})
+					}
+					// #endif
+					// #ifndef APP-PLUS-NVUE
+					console.log("1")
+					let lastIndex = this.list.length - 1;
+					this.scrollIntoView = 'chatItem_' + lastIndex
+					// #endif
+				})
+
+			},
+			//键盘事件
+			test(e) {
+				this.pageToBottom()
+				//监听键盘高度
+				uni.onKeyboardHeightChange(res => {
+					console.log('log', res);
+					this.pageToBottom()
+				})
+			},
+			//长按触发事件
 			long({
 				x,
 				y,
@@ -174,7 +208,7 @@
 			}) {
 				this.chatIndex = index;
 				this.bianhao = this.list[this.chatIndex].user_id;
-				console.log(this.bianhao)
+				// console.log(this.bianhao)
 				// this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
 				this.$refs.mypopup.show(x - 50, y - 20);
 			},
@@ -202,8 +236,17 @@
 			getMenuStyle() {
 				return `height:${this.getMenuHeight}rpx;`
 			},
+			//获取键盘高度
+			getKeyBoardHeight() {
+				return `bottom:${this.KeyboardHeight}px;'`
+			},
+			//聊天区域bottom和top
+			chatBody() {
+				const bottom = uni.upx2px(105) + this.KeyboardHeight;
+				return `bottom:${bottom}px;top:${this.navBarHeight}px;`
+			},
 			fixedStyle() {
-				return `top:${this.navBarHeight}px`
+				return `top:${this.navBarHeight}px;`
 			},
 			isDoSelf() {
 				//id为1是本人
@@ -225,6 +268,15 @@
 			this.statusBarHeight = plus.navigator.getStatusbarHeight();
 			//#endif
 			this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
+			//监听键盘高度
+			uni.onKeyboardHeightChange(res => {
+				console.log('log', res);
+				this.KeyboardHeight = res.height
+
+				if (res.height) {
+					this.pageToBottom()
+				}
+			})
 		}
 	}
 </script>

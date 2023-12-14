@@ -999,6 +999,7 @@ var _myNavBar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui
 //
 //
 //
+//
 var _default = {
   components: {
     MyNavBar: _myNavBar.default,
@@ -1009,8 +1010,10 @@ var _default = {
   },
   data: function data() {
     return {
+      scrollIntoView: 'chatItem_0',
       statusBarHeight: 0,
       navBarHeight: 0,
+      KeyboardHeight: 0,
       chatIndex: -1,
       bianhao: 1,
       menu: [{
@@ -1108,14 +1111,32 @@ var _default = {
     };
   },
   methods: {
-    //长
+    pageToBottom: function pageToBottom() {
+      var _this = this;
+      this.$nextTick(function () {
+        console.log("1");
+        var lastIndex = _this.list.length - 1;
+        _this.scrollIntoView = 'chatItem_' + lastIndex;
+      });
+    },
+    //键盘事件
+    test: function test(e) {
+      var _this2 = this;
+      this.pageToBottom();
+      //监听键盘高度
+      uni.onKeyboardHeightChange(function (res) {
+        console.log('log', res);
+        _this2.pageToBottom();
+      });
+    },
+    //长按触发事件
     long: function long(_ref) {
       var x = _ref.x,
         y = _ref.y,
         index = _ref.index;
       this.chatIndex = index;
       this.bianhao = this.list[this.chatIndex].user_id;
-      console.log(this.bianhao);
+      // console.log(this.bianhao)
       // this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
       this.$refs.mypopup.show(x - 50, y - 20);
     },
@@ -1143,8 +1164,17 @@ var _default = {
     getMenuStyle: function getMenuStyle() {
       return "height:".concat(this.getMenuHeight, "rpx;");
     },
+    //获取键盘高度
+    getKeyBoardHeight: function getKeyBoardHeight() {
+      return "bottom:".concat(this.KeyboardHeight, "px;'");
+    },
+    //聊天区域bottom和top
+    chatBody: function chatBody() {
+      var bottom = uni.upx2px(105) + this.KeyboardHeight;
+      return "bottom:".concat(bottom, "px;top:").concat(this.navBarHeight, "px;");
+    },
     fixedStyle: function fixedStyle() {
-      return "top:".concat(this.navBarHeight, "px");
+      return "top:".concat(this.navBarHeight, "px;");
     },
     isDoSelf: function isDoSelf() {
       //id为1是本人
@@ -1152,9 +1182,9 @@ var _default = {
       return this.bianhao === id;
     },
     getMenuList: function getMenuList() {
-      var _this = this;
+      var _this3 = this;
       return this.menu.filter(function (v) {
-        if (v.name === '撤回' && !_this.isDoSelf) {
+        if (v.name === '撤回' && !_this3.isDoSelf) {
           return false;
         } else {
           return true;
@@ -1163,7 +1193,16 @@ var _default = {
     }
   },
   mounted: function mounted() {
+    var _this4 = this;
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
+    //监听键盘高度
+    uni.onKeyboardHeightChange(function (res) {
+      console.log('log', res);
+      _this4.KeyboardHeight = res.height;
+      if (res.height) {
+        _this4.pageToBottom();
+      }
+    });
   }
 };
 exports.default = _default;
