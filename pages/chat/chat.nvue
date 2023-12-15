@@ -9,11 +9,16 @@
 			style="background-color: #f7f7f6;height: 105rpx;" :style="getKeyBoardHeight">
 			<my-icon-button :icon="'\ue606'"></my-icon-button>
 			<view class="flex-1">
-				<textarea @focus="test" adjust-position="false" fixed class="font-md p-2 bg-white rounded"
-					style="height: 80rpx;width: 100%;"></textarea>
+				<textarea v-model="message" @focus="test" adjust-position="false" fixed
+					class="font-md p-2 bg-white rounded" style="height: 80rpx;width: 100%;"></textarea>
 			</view>
+			<!-- 表情 -->
 			<my-icon-button :icon="'\ue605'"></my-icon-button>
-			<my-icon-button :icon="'\ue603'"></my-icon-button>
+			<!-- 拓展菜单 -->
+			<my-icon-button v-if="!message" :icon="'\ue603'"></my-icon-button>
+			<view v-else class=" main-bg-color rounded mr-2 px-2 py-1" @click="send('text')">
+				<text class="font text-white">发送</text>
+			</view>
 		</view>
 		<!-- 聊天内容区域 -->
 		<scroll-view :show-scrollbar="false" scroll-y="true" class=" position-fixed left-0 right-0 bg-white"
@@ -55,6 +60,7 @@
 		},
 		data() {
 			return {
+				message: '',
 				scrollIntoView: 'chatItem_0',
 				statusBarHeight: 0,
 				navBarHeight: 0,
@@ -172,7 +178,31 @@
 			}
 		},
 		methods: {
+			//发送消息
+			send(type) {
+				const time = new Date().getTime()
+				const obj = {
+					avatar: "/static/images/mail/friend.png",
+					user_id: 1,
+					nickname: "ada",
+					type: type,
+					data: "哈哈哈哈哈",
+					isRemove: false,
+					create_time: time
+				}
+				switch (type) {
+					case 'text':
+						obj.data = this.message;
+						this.list.push(obj);
 
+						break;
+				}
+				this.$nextTick(() => {
+					this.pageToBottom();
+				})
+
+			},
+			//跳转底部
 			pageToBottom() {
 				this.$nextTick(() => {
 					// #ifdef APP-PLUS-NVUE

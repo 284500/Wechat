@@ -1000,6 +1000,11 @@ var _myNavBar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   components: {
     MyNavBar: _myNavBar.default,
@@ -1010,6 +1015,7 @@ var _default = {
   },
   data: function data() {
     return {
+      message: '',
       scrollIntoView: 'chatItem_0',
       statusBarHeight: 0,
       navBarHeight: 0,
@@ -1111,22 +1117,46 @@ var _default = {
     };
   },
   methods: {
-    pageToBottom: function pageToBottom() {
+    //发送消息
+    send: function send(type) {
       var _this = this;
+      var time = new Date().getTime();
+      var obj = {
+        avatar: "/static/images/mail/friend.png",
+        user_id: 1,
+        nickname: "ada",
+        type: type,
+        data: "哈哈哈哈哈",
+        isRemove: false,
+        create_time: time
+      };
+      switch (type) {
+        case 'text':
+          obj.data = this.message;
+          this.list.push(obj);
+          break;
+      }
+      this.$nextTick(function () {
+        _this.pageToBottom();
+      });
+    },
+    //跳转底部
+    pageToBottom: function pageToBottom() {
+      var _this2 = this;
       this.$nextTick(function () {
         console.log("1");
-        var lastIndex = _this.list.length - 1;
-        _this.scrollIntoView = 'chatItem_' + lastIndex;
+        var lastIndex = _this2.list.length - 1;
+        _this2.scrollIntoView = 'chatItem_' + lastIndex;
       });
     },
     //键盘事件
     test: function test(e) {
-      var _this2 = this;
+      var _this3 = this;
       this.pageToBottom();
       //监听键盘高度
       uni.onKeyboardHeightChange(function (res) {
         console.log('log', res);
-        _this2.pageToBottom();
+        _this3.pageToBottom();
       });
     },
     //长按触发事件
@@ -1182,9 +1212,9 @@ var _default = {
       return this.bianhao === id;
     },
     getMenuList: function getMenuList() {
-      var _this3 = this;
+      var _this4 = this;
       return this.menu.filter(function (v) {
-        if (v.name === '撤回' && !_this3.isDoSelf) {
+        if (v.name === '撤回' && !_this4.isDoSelf) {
           return false;
         } else {
           return true;
@@ -1193,14 +1223,14 @@ var _default = {
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this5 = this;
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
     //监听键盘高度
     uni.onKeyboardHeightChange(function (res) {
       console.log('log', res);
-      _this4.KeyboardHeight = res.height;
+      _this5.KeyboardHeight = res.height;
       if (res.height) {
-        _this4.pageToBottom();
+        _this5.pageToBottom();
       }
     });
   }
