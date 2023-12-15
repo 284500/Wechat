@@ -537,8 +537,8 @@ var _default = {
   methods: {
     show: function show() {
       var _this = this;
-      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+      var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
       //设置最大值，防止弹窗溢出
       this.status = true;
       this.$nextTick(function () {
@@ -548,6 +548,7 @@ var _default = {
     },
     hide: function hide() {
       this.status = false;
+      this.$emit('hide');
     }
   },
   props: {
@@ -886,6 +887,11 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.KeyboardHeight = 0
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -929,6 +935,14 @@ var _myChatItem = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-
 var _myAvatar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-avatar.vue */ 45));
 var _myIconButton = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-icon-button.vue */ 69));
 var _myNavBar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-nav-bar.vue */ 59));
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1117,6 +1131,13 @@ var _default = {
     };
   },
   methods: {
+    // 点击打开拓展菜单
+    handleAction: function handleAction() {
+      this.$refs.action.show();
+      //将键盘弹起
+      this.KeyboardHeight = uni.upx2px(580);
+      this.pageToBottom();
+    },
     //发送消息
     send: function send(type) {
       var _this = this;

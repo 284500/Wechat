@@ -165,8 +165,8 @@ var _default = {
   methods: {
     show: function show() {
       var _this = this;
-      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+      var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
       //设置最大值，防止弹窗溢出
       this.status = true;
       this.$nextTick(function () {
@@ -176,6 +176,7 @@ var _default = {
     },
     hide: function hide() {
       this.status = false;
+      this.$emit('hide');
     }
   },
   props: {

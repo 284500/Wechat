@@ -15,7 +15,7 @@
 			<!-- 表情 -->
 			<my-icon-button :icon="'\ue605'"></my-icon-button>
 			<!-- 拓展菜单 -->
-			<my-icon-button v-if="!message" :icon="'\ue603'"></my-icon-button>
+			<my-icon-button v-if="!message" :icon="'\ue603'" @click="handleAction"></my-icon-button>
 			<view v-else class=" main-bg-color rounded mr-2 px-2 py-1" @click="send('text')">
 				<text class="font text-white">发送</text>
 			</view>
@@ -28,16 +28,24 @@
 				<my-chat-item ref="chatItem" :index="index" :item="item" :pre-time="index>0?list[index-1].create_time:0"
 					@Long="long"></my-chat-item>
 			</view>
-			<my-pop-up ref="mypopup" :tabbar-height="260" :body-height="getMenuHeight" :body-width="240">
-				<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
-					<!-- 弹窗内容 -->
-					<view v-for="(item,index) in getMenuList" :key="index" hover-class="bg-hover-secondary"
-						class="flex-1 align-center flex justify-center" @click="click(item.event)">
-						<text class="font-md">{{item.name}}</text>
-					</view>
-				</view>
-			</my-pop-up>
+
 		</scroll-view>
+		<!-- 消息弹出框 -->
+		<my-pop-up ref="mypopup" :tabbar-height="260" :body-height="getMenuHeight" :body-width="240">
+			<view style="width: 240rpx;" class="flex flex-column" :style="getMenuStyle">
+				<!-- 弹窗内容 -->
+				<view v-for="(item,index) in getMenuList" :key="index" hover-class="bg-hover-secondary"
+					class="flex-1 align-center flex justify-center" @click="click(item.event)">
+					<text class="font-md">{{item.name}}</text>
+				</view>
+			</view>
+		</my-pop-up>
+		<!-- 功能弹出框 -->
+		<my-pop-up ref="action" fix-bottom @hide="KeyboardHeight=0">
+			<view style="height: 580rpx;" class="flex flex-column">
+				dadada
+			</view>
+		</my-pop-up>
 	</view>
 </template>
 
@@ -178,6 +186,13 @@
 			}
 		},
 		methods: {
+			// 点击打开拓展菜单
+			handleAction() {
+				this.$refs.action.show();
+				//将键盘弹起
+				this.KeyboardHeight = uni.upx2px(580)
+				this.pageToBottom();
+			},
 			//发送消息
 			send(type) {
 				const time = new Date().getTime()

@@ -23,7 +23,7 @@
 			}
 		},
 		methods: {
-			show(x = 0, y = 0) {
+			show(x = -1, y = -1) {
 				//设置最大值，防止弹窗溢出
 				this.status = true;
 				this.$nextTick(() => {
@@ -33,6 +33,7 @@
 			},
 			hide() {
 				this.status = false;
+				this.$emit('hide');
 			}
 		},
 		props: {
