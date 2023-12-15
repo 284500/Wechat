@@ -9,7 +9,7 @@
 			style="background-color: #f7f7f6;height: 105rpx;" :style="getKeyBoardHeight">
 			<my-icon-button :icon="'\ue606'"></my-icon-button>
 			<view class="flex-1">
-				<textarea v-model="message" @focus="test" adjust-position="false" fixed
+				<textarea v-model="message" @focus="focus" adjust-position="false" fixed
 					class="font-md p-2 bg-white rounded" style="height: 80rpx;width: 100%;"></textarea>
 			</view>
 			<!-- 表情 -->
@@ -41,12 +41,12 @@
 			</view>
 		</my-pop-up>
 		<!-- 功能弹出框 -->
-		<my-pop-up ref="action" fix-bottom @hide="KeyboardHeight=0">
+		<my-pop-up ref="action" fix-bottom @hide="KeyboardHeight=0" :mask="false">
 			<!-- 扩展菜单 -->
 			<view style="height: 580rpx;" class=" border-top border-light-secondary flex-column">
 				<swiper :indicator-dots="actionList.length>1" class="" style="height: 510rpx;">
-					<swiper-item class="row" v-for="(item,index) in actionList">
-						<view v-for="(item2,index2) in item" class="col-3 flex flex-column align-center justify-center"
+					<swiper-item class="flex flex-wrap" v-for="(item,index) in actionList">
+						<view v-for="(item2,index2) in item" class=" col-3 flex flex-column align-center justify-center"
 							style="height: 255rpx;" @click="actionEvent(item2.event)">
 							<image :src="item2.icon" mode="widthFix" style="height: 100rpx;width: 100rpx;"></image>
 							<text class="font-sm text-dark">{{item2.name}}</text>
@@ -77,12 +77,13 @@
 		},
 		data() {
 			return {
-				message: '',
 				scrollIntoView: 'chatItem_0',
 				statusBarHeight: 0,
-				navBarHeight: 0,
-				KeyboardHeight: 0,
-				chatIndex: -1,
+				navBarHeight: 0, //导航栏高度
+				KeyboardHeight: 0, //键盘高度
+				chatIndex: -1, //聊天信息下标
+				message: '', //输入文本
+				mode: "text", //模式 text audio emoji action
 				bianhao: 1,
 				actionList: [
 					[{
@@ -229,6 +230,8 @@
 			// 点击打开拓展菜单
 			handleAction() {
 				this.$refs.action.show();
+				this.mode = 'action';
+				uni.hideKeyboard()
 				//将键盘弹起
 				this.KeyboardHeight = uni.upx2px(580)
 				this.pageToBottom();
@@ -284,13 +287,14 @@
 
 			},
 			//键盘事件
-			test(e) {
+			focus(e) {
+				this.mode = "text"
 				this.pageToBottom()
 				//监听键盘高度
-				uni.onKeyboardHeightChange(res => {
-					console.log('log', res);
-					this.pageToBottom()
-				})
+				// uni.onKeyboardHeightChange(res => {
+				// 	console.log('log', res);
+				// 	this.pageToBottom()
+				// })
 			},
 			//长按触发事件
 			long({
@@ -316,6 +320,14 @@
 				}
 				//关闭菜单
 				this.$refs.mypopup.hide();
+			}
+		},
+		watch: {
+			mode(newValue, oldValue) {
+				console.log(this.mode)
+				if (newValue === 'text') {
+					this.$refs.action.hide()
+				}
 			}
 		},
 		computed: {
@@ -362,12 +374,13 @@
 			this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
 			//监听键盘高度
 			uni.onKeyboardHeightChange(res => {
-				console.log('log', res);
-				this.KeyboardHeight = res.height
-
-				if (res.height) {
-					this.pageToBottom()
+				if (this.mode !== "action") {
+					this.KeyboardHeight = res.height
 				}
+				if (res.height > 0) {
+					this.pageToBottom();
+				}
+
 			})
 		}
 	}

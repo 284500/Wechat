@@ -16,8 +16,8 @@
 }
 
 .row {
-	/* margin-right: -20rpx;
-	margin-left: -20rpx; */
+	margin-right: -20rpx;
+	margin-left: -20rpx;
 	/* #ifndef APP-PLUS-NVUE */
 	display: flex;
 	/* #endif */

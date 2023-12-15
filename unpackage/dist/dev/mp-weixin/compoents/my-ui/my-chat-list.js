@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["compoents/my-ui/my-chat-list"],{
 
-/***/ 102:
+/***/ 104:
 /*!************************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-chat-list"} ***!
   \************************************************************************/
@@ -546,5 +546,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[102,"common/runtime","common/vendor"]]]);
+},[[104,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-chat-list.js.map

@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["compoents/my-ui/my-pop-up"],{
 
-/***/ 103:
+/***/ 105:
 /*!*********************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-pop-up"} ***!
   \*********************************************************************/
@@ -251,5 +251,5 @@ exports.default = _default;
 
 /***/ })
 
-},[[103,"common/runtime","common/vendor"]]]);
+},[[105,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-pop-up.js.map

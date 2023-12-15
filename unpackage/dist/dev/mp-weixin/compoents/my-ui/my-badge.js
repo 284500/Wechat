@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["compoents/my-ui/my-badge"],{
 
-/***/ 101:
+/***/ 103:
 /*!********************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-badge"} ***!
   \********************************************************************/
@@ -199,5 +199,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[101,"common/runtime","common/vendor"]]]);
+},[[103,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-badge.js.map

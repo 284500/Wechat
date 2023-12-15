@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["compoents/my-ui/my-avatar"],{
 
-/***/ 100:
+/***/ 102:
 /*!*********************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-avatar"} ***!
   \*********************************************************************/
@@ -172,5 +172,5 @@ exports.default = _default;
 
 /***/ })
 
-},[[100,"common/runtime","common/vendor"]]]);
+},[[102,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-avatar.js.map
