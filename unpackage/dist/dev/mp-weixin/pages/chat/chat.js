@@ -887,11 +887,20 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.actionList.length
   if (!_vm._isMounted) {
     _vm.e0 = function ($event) {
       _vm.KeyboardHeight = 0
     }
   }
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -1019,6 +1028,15 @@ var _myNavBar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   components: {
     MyNavBar: _myNavBar.default,
@@ -1036,6 +1054,35 @@ var _default = {
       KeyboardHeight: 0,
       chatIndex: -1,
       bianhao: 1,
+      actionList: [[{
+        name: '相册',
+        icon: '/static/images/extends/pic.png',
+        event: 'uploadImage'
+      }, {
+        name: '拍摄',
+        icon: '/static/images/extends/video.png',
+        event: 'uploadImage'
+      }, {
+        name: '收藏',
+        icon: '/static/images/extends/shoucan.png',
+        event: 'uploadImage'
+      }, {
+        name: '名片',
+        icon: '/static/images/extends/man.png',
+        event: 'uploadImage'
+      }, {
+        name: '语音通话',
+        icon: '/static/images/extends/phone.png',
+        event: 'uploadImage'
+      }, {
+        name: '视频通话',
+        icon: '/static/images/extends/phone.png',
+        event: 'uploadImage'
+      }, {
+        name: '位置',
+        icon: '/static/images/extends/path.png',
+        event: 'uploadImage'
+      }]],
       menu: [{
         name: "复制",
         event: "copy"
@@ -1137,6 +1184,13 @@ var _default = {
       //将键盘弹起
       this.KeyboardHeight = uni.upx2px(580);
       this.pageToBottom();
+    },
+    // 拓展菜单事件
+    actionEvent: function actionEvent(event) {
+      switch (event) {
+        case '  ':
+          break;
+      }
     },
     //发送消息
     send: function send(type) {

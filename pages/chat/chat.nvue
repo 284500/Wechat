@@ -42,8 +42,17 @@
 		</my-pop-up>
 		<!-- 功能弹出框 -->
 		<my-pop-up ref="action" fix-bottom @hide="KeyboardHeight=0">
-			<view style="height: 580rpx;" class="flex flex-column">
-				dadada
+			<!-- 扩展菜单 -->
+			<view style="height: 580rpx;" class=" border-top border-light-secondary flex-column">
+				<swiper :indicator-dots="actionList.length>1" class="" style="height: 510rpx;">
+					<swiper-item class="row" v-for="(item,index) in actionList">
+						<view v-for="(item2,index2) in item" class="col-3 flex flex-column align-center justify-center"
+							style="height: 255rpx;" @click="actionEvent(item2.event)">
+							<image :src="item2.icon" mode="widthFix" style="height: 100rpx;width: 100rpx;"></image>
+							<text class="font-sm text-dark">{{item2.name}}</text>
+						</view>
+					</swiper-item>
+				</swiper>
 			</view>
 		</my-pop-up>
 	</view>
@@ -75,6 +84,37 @@
 				KeyboardHeight: 0,
 				chatIndex: -1,
 				bianhao: 1,
+				actionList: [
+					[{
+						name: '相册',
+						icon: '/static/images/extends/pic.png',
+						event: 'uploadImage'
+					}, {
+						name: '拍摄',
+						icon: '/static/images/extends/video.png',
+						event: 'uploadImage'
+					}, {
+						name: '收藏',
+						icon: '/static/images/extends/shoucan.png',
+						event: 'uploadImage'
+					}, {
+						name: '名片',
+						icon: '/static/images/extends/man.png',
+						event: 'uploadImage'
+					}, {
+						name: '语音通话',
+						icon: '/static/images/extends/phone.png',
+						event: 'uploadImage'
+					}, {
+						name: '视频通话',
+						icon: '/static/images/extends/phone.png',
+						event: 'uploadImage'
+					}, {
+						name: '位置',
+						icon: '/static/images/extends/path.png',
+						event: 'uploadImage'
+					}, ]
+				],
 				menu: [{
 						name: "复制",
 						event: "copy"
@@ -192,6 +232,13 @@
 				//将键盘弹起
 				this.KeyboardHeight = uni.upx2px(580)
 				this.pageToBottom();
+			},
+			// 拓展菜单事件
+			actionEvent(event) {
+				switch (event) {
+					case '  ':
+						break;
+				}
 			},
 			//发送消息
 			send(type) {
