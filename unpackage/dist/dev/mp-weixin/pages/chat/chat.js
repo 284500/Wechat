@@ -1049,12 +1049,14 @@ var _default = {
   },
   data: function data() {
     return {
-      scrollIntoView: 'chatItem_0',
+      scrollIntoView: null,
       statusBarHeight: 0,
       navBarHeight: 0,
       //导航栏高度
       KeyboardHeight: 0,
       //键盘高度
+      keyboardH: 0,
+      //高度的变化
       chatIndex: -1,
       //聊天信息下标
       message: '',
@@ -1223,13 +1225,14 @@ var _default = {
       }
       this.$nextTick(function () {
         _this.pageToBottom();
+        _this.message = null;
       });
     },
     //跳转底部
     pageToBottom: function pageToBottom() {
       var _this2 = this;
       this.$nextTick(function () {
-        console.log("1");
+        console.log("跳转底部");
         var lastIndex = _this2.list.length - 1;
         _this2.scrollIntoView = 'chatItem_' + lastIndex;
       });
@@ -1244,6 +1247,9 @@ var _default = {
       // 	this.pageToBottom()
       // })
     },
+    blur: function blur() {
+      this.scrollIntoView = null;
+    },
     //长按触发事件
     long: function long(_ref) {
       var x = _ref.x,
@@ -1251,8 +1257,6 @@ var _default = {
         index = _ref.index;
       this.chatIndex = index;
       this.bianhao = this.list[this.chatIndex].user_id;
-      // console.log(this.bianhao)
-      // this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
       this.$refs.mypopup.show(x - 50, y - 20);
     },
     click: function click(e) {
@@ -1274,6 +1278,13 @@ var _default = {
       console.log(this.mode);
       if (newValue === 'text') {
         this.$refs.action.hide();
+      }
+    },
+    KeyboardH: function KeyboardH(newValue, oldValue) {
+      if (newValue > 0) {
+        this.mode = 'text';
+        this.KeyboardHeight = newValue;
+        this.pageToBottom();
       }
     }
   },
@@ -1320,12 +1331,10 @@ var _default = {
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
     //监听键盘高度
     uni.onKeyboardHeightChange(function (res) {
-      if (_this4.mode !== "action") {
-        _this4.KeyboardHeight = res.height;
-      }
-      if (res.height > 0) {
-        _this4.pageToBottom();
-      }
+      // if (this.mode !== "action") {
+      // 	this.KeyboardHeight = res.height
+      // }
+      _this4.KeyboardH = res.height;
     });
   }
 };

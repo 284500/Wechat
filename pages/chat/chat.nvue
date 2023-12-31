@@ -9,7 +9,7 @@
 			style="background-color: #f7f7f6;height: 105rpx;" :style="getKeyBoardHeight">
 			<my-icon-button :icon="'\ue606'"></my-icon-button>
 			<view class="flex-1">
-				<textarea v-model="message" @focus="focus" adjust-position="false" fixed
+				<textarea v-model="message" @focus="focus" @blur="blur" adjust-position="false" fixed
 					class="font-md p-2 bg-white rounded" style="height: 80rpx;width: 100%;"></textarea>
 			</view>
 			<!-- 表情 -->
@@ -77,10 +77,12 @@
 		},
 		data() {
 			return {
-				scrollIntoView: 'chatItem_0',
+				scrollIntoView: null,
 				statusBarHeight: 0,
 				navBarHeight: 0, //导航栏高度
 				KeyboardHeight: 0, //键盘高度
+				keyboardH: 0,
+				//高度的变化
 				chatIndex: -1, //聊天信息下标
 				message: '', //输入文本
 				mode: "text", //模式 text audio emoji action
@@ -259,11 +261,11 @@
 					case 'text':
 						obj.data = this.message;
 						this.list.push(obj);
-
 						break;
 				}
 				this.$nextTick(() => {
 					this.pageToBottom();
+					this.message = null;
 				})
 
 			},
@@ -279,7 +281,7 @@
 					}
 					// #endif
 					// #ifndef APP-PLUS-NVUE
-					console.log("1")
+					console.log("跳转底部")
 					let lastIndex = this.list.length - 1;
 					this.scrollIntoView = 'chatItem_' + lastIndex
 					// #endif
@@ -296,6 +298,9 @@
 				// 	this.pageToBottom()
 				// })
 			},
+			blur() {
+				this.scrollIntoView = null;
+			},
 			//长按触发事件
 			long({
 				x,
@@ -304,8 +309,6 @@
 			}) {
 				this.chatIndex = index;
 				this.bianhao = this.list[this.chatIndex].user_id;
-				// console.log(this.bianhao)
-				// this.menu[1].name = this.isDoSelf ? '取消置顶' : '设置置顶';
 				this.$refs.mypopup.show(x - 50, y - 20);
 			},
 			click(e) {
@@ -327,6 +330,13 @@
 				console.log(this.mode)
 				if (newValue === 'text') {
 					this.$refs.action.hide()
+				}
+			},
+			KeyboardH(newValue, oldValue) {
+				if (newValue > 0) {
+					this.mode = 'text'
+					this.KeyboardHeight = newValue;
+					this.pageToBottom()
 				}
 			}
 		},
@@ -374,12 +384,10 @@
 			this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
 			//监听键盘高度
 			uni.onKeyboardHeightChange(res => {
-				if (this.mode !== "action") {
-					this.KeyboardHeight = res.height
-				}
-				if (res.height > 0) {
-					this.pageToBottom();
-				}
+				// if (this.mode !== "action") {
+				// 	this.KeyboardHeight = res.height
+				// }
+				this.KeyboardH = res.height
 
 			})
 		}
