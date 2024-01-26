@@ -4,6 +4,7 @@
     "my-icon-button": "/compoents/my-ui/my-icon-button",
     "my-avatar": "/compoents/my-ui/my-avatar",
     "my-chat-item": "/compoents/my-ui/my-chat-item",
-    "my-pop-up": "/compoents/my-ui/my-pop-up"
+    "my-pop-up": "/compoents/my-ui/my-pop-up",
+    "emoji": "/compoents/emoji"
   }
 }

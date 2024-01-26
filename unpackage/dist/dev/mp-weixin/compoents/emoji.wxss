@@ -1,0 +1,31 @@
+
+.view.data-v-582fe1fe {
+
+	height: 580rpx;
+}
+.emoji.data-v-582fe1fe {
+	display: flex;
+	flex-direction: column;
+}
+.delete.data-v-582fe1fe {
+	z-index: 9999;
+	width: 120rpx;
+	height: 80rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	right: 30rpx;
+	bottom: 30rpx;
+	border-radius: 20rpx;
+	background-color: #ffffff;
+	position: fixed;
+	opacity: 0.9;
+}
+.row.data-v-582fe1fe {
+	display: flex;
+	justify-content: space-around;
+}
+.col.data-v-582fe1fe {
+	height: 80rpx;
+}
+

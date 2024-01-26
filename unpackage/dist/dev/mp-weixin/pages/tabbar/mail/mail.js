@@ -721,19 +721,31 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.list, function (item, index) {
+  var l1 = _vm.__map(_vm.list, function (item, index) {
     var $orig = _vm.__get_orig(item)
     var g0 = item.data.length
+    var l0 =
+      g0 > 0
+        ? _vm.__map(item.data, function (item2, index2) {
+            var $orig = _vm.__get_orig(item2)
+            var g1 = item.data.length
+            return {
+              $orig: $orig,
+              g1: g1,
+            }
+          })
+        : null
     return {
       $orig: $orig,
       g0: g0,
+      l0: l0,
     }
   })
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        l0: l0,
+        l1: l1,
       },
     }
   )
@@ -781,7 +793,7 @@ var _myNavBar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui
 var _myPopUp = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui/my-pop-up.vue */ 64));
 var MyListItem = function MyListItem() {
   __webpack_require__.e(/*! require.ensure | compoents/my-ui/my-list-item */ "compoents/my-ui/my-list-item").then((function () {
-    return resolve(__webpack_require__(/*! @/compoents/my-ui/my-list-item.vue */ 122));
+    return resolve(__webpack_require__(/*! @/compoents/my-ui/my-list-item.vue */ 125));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -807,7 +819,7 @@ var _default = {
       }],
       list: [{
         letter: 'A',
-        data: ['ada', 'awea']
+        data: ['ada']
       }, {
         letter: 'B',
         data: []

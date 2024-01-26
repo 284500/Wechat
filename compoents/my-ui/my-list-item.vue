@@ -4,7 +4,7 @@
 			<slot name='icon'></slot>
 			<img v-if="imgUrl" :src="imgUrl" mode="withFix" :style="getIamgeStyle">
 		</view>
-		<view class="flex-1 border-bottom flex align-center justify-between pr-1">
+		<view :class="{'border-bottom':notBottom}" class="flex-1 flex align-center justify-between pr-1">
 			<slot name='title'>
 				<text class="font-md text-dark">{{title}}</text>
 			</slot>
@@ -44,6 +44,10 @@
 			imageSize: {
 				type: Number,
 				default: 75
+			},
+			notBottom: {
+				type: Boolean,
+				default: true
 			}
 		}
 	}

@@ -3,9 +3,7 @@
 		onLaunch: function() {
 
 		},
-		onShow: function() {
-			console.log('App Show')
-		},
+		onShow: function() {},
 		onHide: function() {
 			console.log('App Hide')
 		}

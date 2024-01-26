@@ -8,12 +8,12 @@
 		<!-- 通讯录列表 -->
 		<my-list-item v-for="item in mailList" @click="click(item.event)" :title="item.title"
 			:img-url="item.imgUrl"></my-list-item>
-		<view v-for="(item,index) in list" :key="index" v-if="item.data.length>0">
+		<view class="border-bottom" v-for="(item,index) in list" :key="index" v-if="item.data.length>0">
 			<view class="py-2 px-3 border-bottom bg-light">
 				<text class="text-dark font-md">{{item.letter}}</text>
 			</view>
 			<my-list-item v-for="(item2,index2) in item.data" :key="index2" @click="click()" :title="item2"
-				img-url="/static/images/mail/friend.png"></my-list-item>
+				:not-bottom="index2!==(item.data.length-1)" img-url="/static/images/mail/friend.png"></my-list-item>
 		</view>
 
 	</view>
@@ -49,7 +49,7 @@
 				],
 				list: [{
 						letter: 'A',
-						data: ['ada', 'awea']
+						data: ['ada']
 					},
 					{
 						letter: 'B',

@@ -8,7 +8,7 @@
 			<view class="w-100 flex justify-between align-center" style="height: 90rpx;">
 				<!-- 左边 -->
 				<view class="flex align-center">
-					<my-icon-button class="pt-2" v-if="isShowBack" @click="back" :icon="'\ue60d'"></my-icon-button>
+					<my-icon-button class="pt-1" v-if="isShowBack" @click="back" :icon="'\ue60d'"></my-icon-button>
 					<slot>
 						<text v-if="title" class="font-md ml-3">{{getTitle}}
 						</text>

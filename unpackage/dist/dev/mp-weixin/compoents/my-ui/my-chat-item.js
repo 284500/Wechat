@@ -156,6 +156,15 @@ var _myAvatar = _interopRequireDefault(__webpack_require__(/*! @/compoents/my-ui
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   components: {
     MyAvatar: _myAvatar.default
@@ -183,6 +192,16 @@ var _default = {
     },
     showTime: function showTime() {
       return _time.default.getChatTime(this.item.create_time, this.preTime);
+    },
+    hasLabel: function hasLabel() {
+      return this.item.type === 'text' || this.item.type === 'audio';
+    },
+    labelClass: function labelClass() {
+      if (this.hasLabel) {
+        return 'pd';
+      } else {
+        return ' ';
+      }
     }
   },
   methods: {
@@ -237,7 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 121:
+/***/ 124:
 /*!************************************************************************!*\
   !*** F:/uniapp/微信/main.js?{"page":"compoents%2Fmy-ui%2Fmy-chat-item"} ***!
   \************************************************************************/
@@ -409,5 +428,5 @@ exports.default = _default;
 
 /***/ })
 
-},[[121,"common/runtime","common/vendor"]]]);
+},[[124,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/compoents/my-ui/my-chat-item.js.map

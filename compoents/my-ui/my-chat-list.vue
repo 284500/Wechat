@@ -5,8 +5,8 @@
 		<view class="flex align-center justify-center position-relative" style="width: 145rpx;height: 135rpx;">
 			<my-avatar :src="item.avater"></my-avatar>
 			<!-- 消息角标 -->
-			<my-badge v-if="item.num>0" badge-class="position-absolute"
-				badge-style="right:15rpx;top:14rpx">{{item.num ||index+1}}</my-badge>
+			<!-- <my-badge v-if="item.num>0" badge-class="position-absolute"
+				badge-style="right:15rpx;top:14rpx">{{item.num ||index+1}}</my-badge> -->
 		</view>
 		<!-- 信息栏 -->
 		<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
@@ -15,6 +15,8 @@
 				<text class="font-sm text-light-muted">{{item.update_time | formatTime}}</text>
 			</view>
 			<text class="font text-ellipsis text-light-muted">{{item.data}}</text>
+			<my-badge v-if="item.num>0" badge-class="position-absolute"
+				badge-style="right:30rpx;bottom:30rpx">{{item.num ||index+1}}</my-badge>
 		</view>
 	</view>
 </template>
