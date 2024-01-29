@@ -2,7 +2,6 @@
 	<view>
 		<view class=" flex justify-center align-center" style="height: 90rpx;width: 90rpx;" @click="$emit('click')">
 			<text class="iconfont font-md">
-				<!-- <slot></slot> -->
 				{{icon}}
 			</text>
 		</view>
